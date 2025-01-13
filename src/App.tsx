@@ -1,23 +1,10 @@
-import { Button } from './components/ui/button';
-import { useTheme } from './ThemeProvider';
+import { Link } from '@tanstack/react-router';
 
 export default function App() {
-  const { setTheme, theme } = useTheme();
-
   return (
     <>
       <h1 className='bg-red-500 '>ThemeProvider</h1>
-      <Test theme={theme} setTheme={setTheme} />
+      <Link to='/test'>test</Link>
     </>
   );
 }
-
-const Test = ({ theme, setTheme }: { theme: string; setTheme: (theme: 'dark' | 'light' | 'system') => void }) => (
-  <>
-    <p>{theme}</p>
-    <Button variant={'ghost'} onClick={() => setTheme('light')}>
-      Light
-    </Button>
-    <Button onClick={() => setTheme('dark')}>Dark</Button>
-  </>
-);
