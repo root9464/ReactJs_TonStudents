@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { GlobalProvider } from './components/Provider/Global.tsx';
+import { GlobalProvider } from './components/GlobalProvider';
 import './index.css';
 
 createRoot(document.getElementById('root')!).render(
