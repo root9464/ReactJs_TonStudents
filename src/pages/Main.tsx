@@ -1,7 +1,7 @@
 import { useTheme } from '@/shared/hooks/useTheme';
-import { Button } from './components/ui/button';
+import { Button } from '../components/ui/button';
 
-export default function App() {
+export default function MainPage() {
   const { setTheme, theme } = useTheme();
 
   return (

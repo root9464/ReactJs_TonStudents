@@ -1,6 +1,6 @@
-import App from '@/App'
-import { createFileRoute } from '@tanstack/react-router'
+import MainPage from '@/pages/Main';
+import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/')({
-  component: App,
-})
+  component: MainPage,
+});

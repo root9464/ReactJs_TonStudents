@@ -5,8 +5,10 @@ import { useClientOnce } from '@/shared/hooks/useClientOnce';
 import { useTelegramMock } from '@/shared/hooks/useTelegramMock';
 import { init } from '@/shared/lib/initTma';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { createContext, useEffect, useState } from 'react';
+import { TanStackRouterDevtools } from './../../node_modules/@tanstack/router-devtools/src/devtools';
 
 declare module '@tanstack/react-router' {
   interface Register {
@@ -70,6 +72,13 @@ export const GlobalProvider = ({ defaultTheme = 'light', storageKey = 'vite-ui-t
     <ThemeProviderContext.Provider {...props} value={themeContextValue}>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
+
+        {isDev && (
+          <>
+            <ReactQueryDevtools initialIsOpen={false} />
+            <TanStackRouterDevtools router={router} />
+          </>
+        )}
       </QueryClientProvider>
     </ThemeProviderContext.Provider>
   );

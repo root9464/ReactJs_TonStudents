@@ -1,6 +1,6 @@
 import { useBackButton } from '@/shared/hooks/useBackButton';
 
-export const TestPage = () => {
+export default function TestPage() {
   useBackButton(true);
   return <div>Test</div>;
-};
+}
