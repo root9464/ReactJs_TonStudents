@@ -15,11 +15,7 @@ export default function App() {
 const Test = ({ theme, setTheme }: { theme: string; setTheme: (theme: 'dark' | 'light' | 'system') => void }) => (
   <>
     <p>{theme}</p>
-    <Button
-      onClick={() => {
-        setTheme('light');
-        console.log(theme);
-      }}>
+    <Button variant={'ghost'} onClick={() => setTheme('light')}>
       Light
     </Button>
     <Button onClick={() => setTheme('dark')}>Dark</Button>

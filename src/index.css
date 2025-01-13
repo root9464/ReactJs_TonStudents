@@ -28,7 +28,9 @@
     --muted-foreground: #757575;
 
     /* Дополнительные акценты */
-    --accent: #e9eff4;
+    /* цвет при hover*/
+    --accent: #1087e9;
+    /* цвет текста при hover */
     --accent-foreground: #2f2929;
 
     /* Опасные действия */
