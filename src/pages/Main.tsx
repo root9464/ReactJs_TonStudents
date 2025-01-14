@@ -9,13 +9,10 @@ export default function MainPage() {
   const { setTheme } = useTheme();
 
   return (
-    <>
-      {/* <div className='safe-area-content fixed top-0 left-0 w-full'>fffff</div> */}
-      <div className=''>
-        <Button onClick={() => setTheme('dark')}>dark</Button>
-        <Button onClick={() => setTheme('light')}>light</Button>
-        <Link to='/test'>Test</Link>
-      </div>
-    </>
+    <div>
+      <Button onClick={() => setTheme('dark')}>dark</Button>
+      <Button onClick={() => setTheme('light')}>light</Button>
+      <Link to='/test'>Test</Link>
+    </div>
   );
 }

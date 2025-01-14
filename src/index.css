@@ -7,8 +7,8 @@
 @layer base {
 
   :root {
-    padding-top: calc(var(--tg-viewport-content-safe-area-inset-top) + var(--tg-viewport-safe-area-inset-top) + 3%);
-    @apply bg-red-300;
+    padding-top: calc(var(--tg-viewport-content-safe-area-inset-top) + var(--tg-viewport-safe-area-inset-top));
+    @apply bg-red-400;
   }
 
   * {
