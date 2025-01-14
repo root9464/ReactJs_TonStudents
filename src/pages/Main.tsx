@@ -1,23 +1,21 @@
+import { Button } from '@/components/ui/button';
+import { useBackButton } from '@/shared/hooks/useBackButton';
 import { useTheme } from '@/shared/hooks/useTheme';
-import { Button } from '../components/ui/button';
+import { Link } from '@tanstack/react-router';
 
 export default function MainPage() {
-  const { setTheme, theme } = useTheme();
+  useBackButton(false);
+
+  const { setTheme } = useTheme();
 
   return (
     <>
-      <h1 className='bg-red-500 '>ThemeProvider</h1>
-      <Test theme={theme} setTheme={setTheme} />
+      {/* <div className='safe-area-content fixed top-0 left-0 w-full'>fffff</div> */}
+      <div className=''>
+        <Button onClick={() => setTheme('dark')}>dark</Button>
+        <Button onClick={() => setTheme('light')}>light</Button>
+        <Link to='/test'>Test</Link>
+      </div>
     </>
   );
 }
-
-const Test = ({ theme, setTheme }: { theme: string; setTheme: (theme: 'dark' | 'light' | 'system') => void }) => (
-  <>
-    <p>{theme}</p>
-    <Button variant={'ghost'} onClick={() => setTheme('light')}>
-      Light
-    </Button>
-    <Button onClick={() => setTheme('dark')}>Dark</Button>
-  </>
-);

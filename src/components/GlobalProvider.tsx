@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react-hooks/rules-of-hooks */
+import '@/index.css';
 import { routeTree } from '@/routeTree.gen';
 import { useClientOnce } from '@/shared/hooks/useClientOnce';
 import { useTelegramMock } from '@/shared/hooks/useTelegramMock';

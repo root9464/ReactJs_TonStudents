@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import { $debug, backButton, initData, init as initSDK, miniApp, themeParams, viewport } from '@telegram-apps/sdk-react';
+import { $debug, backButton, initData, init as initSDK, miniApp, settingsButton, themeParams, viewport } from '@telegram-apps/sdk-react';
 
 /*
  Initializes the application and configures its dependencies.
@@ -17,6 +17,7 @@ export async function init(debug: boolean): Promise<void> {
   backButton.isSupported() && backButton.mount();
   miniApp.mount();
   themeParams.mount();
+  settingsButton.mount();
 
   // settings
   void viewport
@@ -25,11 +26,14 @@ export async function init(debug: boolean): Promise<void> {
       viewport.bindCssVars();
       viewport.expand();
 
-      // viewport.requestFullscreen();
+      viewport.requestFullscreen();
     })
     .catch((e) => {
       console.error('Something went wrong mounting the viewport', e);
     });
+
+  // settingsButton.show();
+  // settingsButton.onClick(() => alert('Settings button clicked'));
 
   initData.restore();
   backButton.hide();

@@ -1,95 +1,35 @@
+@import './styles/themes.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
 @layer base {
+
   :root {
-    /* Основной фон и текст */
-    --background: #E3E7EE;
-    /* Фон основной области интерфейса */
-    --foreground: #332f2d;
-    /* Основной текстовый цвет */
-
-    /* Карточки и всплывающие элементы */
-    --card: #ffffff;
-    --card-foreground: #332f2d;
-    --popover: #ffffff;
-    --popover-foreground: #332f2d;
-
-    /* Основные и второстепенные акценты */
-    --primary: #007bff;
-    --primary-foreground: #f5faff;
-    --secondary: #e9eff4;
-    --secondary-foreground: #df1c1c;
-
-    /* Мутные и приглушенные элементы */
-    --muted: #e9eff4;
-    --muted-foreground: #757575;
-
-    /* Дополнительные акценты */
-    /* цвет при hover*/
-    --accent: #1087e9;
-    /* цвет текста при hover */
-    --accent-foreground: #2f2929;
-
-    /* Опасные действия */
-    --destructive: #d93838;
-    --destructive-foreground: #f5faff;
-
-    /* Границы, ввод и фокус */
-    --border: #e0e0e0;
-    /* Цвет для границ элементов */
-    --input: #e0e0e0;
-    /* Цвет фона полей ввода */
-    --ring: #332f2d;
-    /* Цвет фокусного кольца */
-
-    /* Графики */
-    --chart-1: #f25959;
-    --chart-2: #42a386;
-    --chart-3: #619fc9;
-    --chart-4: #6bcc83;
-    --chart-5: #6bdc6d;
-
-    /* Радиус */
-    --radius: 1rem;
+    padding-top: calc(var(--tg-viewport-content-safe-area-inset-top) + var(--tg-viewport-safe-area-inset-top) + 3%);
+    @apply bg-red-300;
   }
 
-  .dark {
-    --background: #332f2d;
-    --foreground: #f5faff;
-    --card: #332f2d;
-    --card-foreground: #f5faff;
-    --popover: #332f2d;
-    --popover-foreground: #f5faff;
-    --primary: #636a70;
-    --primary-foreground: #2f2929;
-    --secondary: #201a19;
-    --secondary-foreground: #f5faff;
-    --muted: #201a19;
-    --muted-foreground: #9b8e89;
-    --accent: #201a19;
-    --accent-foreground: #f5faff;
-    --destructive: #9e2b1e;
-    --destructive-foreground: #f5faff;
-    --border: #201a19;
-    --input: #201a19;
-    --ring: #746a77;
-    --chart-1: #4a90e2;
-    --chart-2: #2e9967;
-    --chart-3: #f9aa33;
-    --chart-4: #9055b2;
-    --chart-5: #e94a77;
-  }
-}
-
-@layer base {
   * {
     @apply border-border;
   }
 
-  body {
+  body,
+  html {
     @apply bg-background text-foreground w-full min-h-screen h-screen no-underline;
+  }
+}
+
+
+@layer components {
+  .safe-area-content {
+    margin-top: calc(var(--tg-viewport-content-safe-area-inset-top));
+    @apply bg-purple-400 pl-[105px] pr-[105px];
+  }
+
+  .safe-area {
+    margin-top: calc(var(--tg-viewport-content-safe-area-inset-top) + 12%);
+    @apply bg-red-400;
   }
 }
