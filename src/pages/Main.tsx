@@ -1,3 +1,4 @@
+import { PageFlow } from '@/components/PageFlow';
 import { Button } from '@/components/ui/button';
 import { useBackButton } from '@/shared/hooks/useBackButton';
 import { useTheme } from '@/shared/hooks/useTheme';
@@ -9,10 +10,10 @@ export default function MainPage() {
   const { setTheme } = useTheme();
 
   return (
-    <div>
+    <PageFlow>
       <Button onClick={() => setTheme('dark')}>dark</Button>
       <Button onClick={() => setTheme('light')}>light</Button>
       <Link to='/test'>Test</Link>
-    </div>
+    </PageFlow>
   );
 }
