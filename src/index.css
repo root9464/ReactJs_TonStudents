@@ -30,7 +30,7 @@
   }
 
   .safe-area {
-    margin-top: calc(var(--tg-viewport-content-safe-area-inset-top) + 12%);
-    @apply bg-red-400;
+    height: calc(var(--tg-viewport-content-safe-area-inset-top) + var(--tg-viewport-safe-area-inset-top));
+    @apply bg-transparent backdrop-blur-[15px] fixed top-0 w-full;
   }
 }

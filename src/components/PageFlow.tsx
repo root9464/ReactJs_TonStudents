@@ -11,8 +11,11 @@ import { ReactNode } from '@tanstack/react-router';
 
 export const PageFlow = ({ children, className, ...props }: { children: ReactNode; className?: string }) => {
   return (
-    <div className={cn(`w-full h-screen overflow-hidden ${className}`)} {...props}>
-      {children}
-    </div>
+    <>
+      <div className='safe-area' />
+      <div className={cn(`w-full h-screen overflow-hidden ${className}`)} {...props}>
+        {children}
+      </div>
+    </>
   );
 };
