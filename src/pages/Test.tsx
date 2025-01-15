@@ -1,6 +1,11 @@
+import { PageFlow } from '@/components/PageFlow';
 import { useBackButton } from '@/shared/hooks/useBackButton';
 
 export default function TestPage() {
   useBackButton(true);
-  return <div>Test</div>;
+  return (
+    <PageFlow>
+      <h1 className='text-2xl'>test</h1>
+    </PageFlow>
+  );
 }

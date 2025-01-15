@@ -1,19 +1,14 @@
-import { PageFlow } from '@/components/PageFlow';
-import { Button } from '@/components/ui/button';
-import { useBackButton } from '@/shared/hooks/useBackButton';
-import { useTheme } from '@/shared/hooks/useTheme';
-import { Link } from '@tanstack/react-router';
+import { PageFlow } from '@components/PageFlow';
+import { useBackButton } from '@hooks/useBackButton';
 
 export default function MainPage() {
   useBackButton(false);
 
-  const { setTheme } = useTheme();
-
   return (
     <PageFlow>
-      <Button onClick={() => setTheme('dark')}>dark</Button>
-      <Button onClick={() => setTheme('light')}>light</Button>
-      <Link to='/test'>Test</Link>
+      <div className='h-[500px] bg-blue-300'>ff</div>
+
+      <div className='h-[300px] bg-pink-300'>ff</div>
     </PageFlow>
   );
 }

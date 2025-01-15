@@ -58,6 +58,10 @@ export default {
           '5': 'var(--chart-5)',
         },
       },
+
+      fontSize: {
+        xxs: '10px',
+      },
     },
   },
   plugins: [require('tailwindcss-animate')],
