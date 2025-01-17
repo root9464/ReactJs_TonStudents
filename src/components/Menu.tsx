@@ -11,7 +11,7 @@ export const MenuBar = () => {
   const { pathname } = useLocation();
 
   return (
-    <div className='fixed bottom-5 left-1/2 flex h-fit w-max -translate-x-1/2 transform flex-col items-center justify-center gap-2.5 bg-red-400'>
+    <div className='ssm:bg-blue-400 ssm:flex-row fixed bottom-5 left-1/2 flex h-fit w-max -translate-x-1/2 transform flex-col items-center justify-center gap-2.5 bg-red-400'>
       <SubMenu isVisible={true} pathname={pathname} />
       <Menu pathname={pathname} />
     </div>
@@ -61,7 +61,7 @@ const SubMenu = ({ isVisible, pathname }: { isVisible: boolean; pathname: string
   return (
     <>
       {isVisible && (
-        <div className='bg-default flex h-[55px] w-max flex-row items-center justify-between gap-1.5 rounded-3xl p-1.5'>
+        <div className='bg-default flex h-[60px] w-max flex-row items-center justify-between gap-1.5 rounded-3xl p-2'>
           {SubMenuPage.map(({ path, name, icon, type }) => (
             <div
               key={path}

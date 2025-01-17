@@ -67,6 +67,10 @@ export default {
         xxs: '10px',
       },
 
+      screens: {
+        ssm: '600px',
+      },
+
       height: {
         tma: 'var(--tg-viewport-height)',
       },
