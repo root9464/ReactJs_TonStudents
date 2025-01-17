@@ -62,6 +62,10 @@ export default {
       fontSize: {
         xxs: '10px',
       },
+
+      height: {
+        tma: 'var(--tg-viewport-height)',
+      },
     },
   },
   plugins: [require('tailwindcss-animate')],

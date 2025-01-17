@@ -1,5 +1,5 @@
+import TestIcon from '@/assets/svg/Group 1597882766.svg';
 import { Link, useLocation } from '@tanstack/react-router';
-
 const Pages = [
   { path: '/', name: 'Home' },
   { path: '/account', name: 'Account' },
@@ -15,7 +15,7 @@ export const Menu = () => {
       {Pages.map(({ path, name }) => (
         <div key={path} className={`h-full w-[60px] rounded-2xl ${pathname === path ? 'bg-primary text-white' : null}`}>
           <Link to={path} className='flex h-full w-full flex-col items-center justify-center text-xs font-semibold'>
-            <div className='h-5 w-5 rounded-full bg-lime-300' />
+            <TestIcon />
             {name}
           </Link>
         </div>

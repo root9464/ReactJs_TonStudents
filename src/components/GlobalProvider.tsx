@@ -8,13 +8,17 @@ import { init } from '@/shared/lib/initTma';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createRouter, RouterProvider } from '@tanstack/react-router';
-import { createContext, useEffect, useState } from 'react';
+import { createContext, FunctionComponent, SVGProps, useEffect, useState } from 'react';
 import { TanStackRouterDevtools } from './../../node_modules/@tanstack/router-devtools/src/devtools';
 
 declare module '@tanstack/react-router' {
   interface Register {
     router: typeof router;
   }
+}
+
+declare module '*.svg' {
+  export const ReactComponent: FunctionComponent<SVGProps<SVGSVGElement>>;
 }
 
 type Theme = 'dark' | 'light' | 'system';

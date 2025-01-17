@@ -1,0 +1,6 @@
+{
+  "files.autoGuessEncoding": true,
+  "files.autoSave": "onFocusChange",
+  "workbench.commandPalette.experimental.suggestCommands": true,
+  "workbench.commandPalette.preserveInput": false
+}
