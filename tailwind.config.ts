@@ -35,6 +35,10 @@ export default {
           DEFAULT: 'var(--secondary)',
           foreground: 'var(--secondary-foreground)',
         },
+        default: {
+          DEFAULT: 'var(--default)',
+          foreground: 'var(--default-foreground)',
+        },
         muted: {
           DEFAULT: 'var(--muted)',
           foreground: 'var(--muted-foreground)',

@@ -13,7 +13,7 @@ export const PageFlow = ({ children, className, ...props }: { children: ReactNod
   return (
     <>
       <div className='safe-area' />
-      <div className={cn(`relative flex h-full w-full flex-col bg-background px-5 ${className}`)} {...props}>
+      <div className={cn(`relative flex h-full w-full flex-col bg-background px-1 ${className}`)} {...props}>
         <div className='flex-1 bg-slate-700 py-5 pb-24'>{children}</div>
       </div>
     </>

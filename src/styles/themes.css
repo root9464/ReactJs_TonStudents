@@ -16,6 +16,8 @@
    --primary-foreground: #f5faff;
    --secondary: #707579;
    --secondary-foreground: #df1c1c;
+   --default: #ffffff;
+   --default-foreground: #f5faff;
 
    /* Мутные и приглушенные элементы */
    --muted: #e9eff4;
