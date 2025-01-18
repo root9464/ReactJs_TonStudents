@@ -12,6 +12,7 @@ export const NewsModule = () => {
       <motion.div
         animate={{
           scale: [1, 1.2, 1],
+          opacity: [1, 0.5, 1],
         }}
         transition={{
           duration: 4,
