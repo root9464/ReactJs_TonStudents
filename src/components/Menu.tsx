@@ -11,7 +11,7 @@ export const MenuBar = () => {
   const { pathname } = useLocation();
 
   return (
-    <div className='ssm:bg-blue-400 ssm:flex-row fixed bottom-5 left-1/2 flex h-fit w-max -translate-x-1/2 transform flex-col items-center justify-center gap-2.5 bg-red-400'>
+    <div className='fixed bottom-5 left-1/2 flex h-fit w-[calc(100%-16px)] -translate-x-1/2 transform flex-col items-center justify-center gap-2.5 bg-red-400 ssm:flex-row ssm:bg-blue-400'>
       <SubMenu isVisible={true} pathname={pathname} />
       <Menu pathname={pathname} />
     </div>
@@ -20,7 +20,7 @@ export const MenuBar = () => {
 
 const MenuPage = [
   { path: '/', name: 'Home', icon: <HomeIco className='h-4 w-4' /> },
-  { path: '/account', name: 'Account', icon: <AccountIco className='h-4 w-4' />, type: 'development' },
+  { path: '/account', name: 'Account', icon: <AccountIco className='h-4 w-4' /> },
   { path: '/store', name: 'Store', icon: <StoreIco className='h-4 w-4' />, type: 'development' },
   { path: '/history', name: 'History', icon: <HistoryIco className='h-4 w-4' />, type: 'development' },
   { path: '/test', name: 'Test' },
@@ -28,7 +28,7 @@ const MenuPage = [
 
 const Menu = ({ pathname }: { pathname: string }) => {
   return (
-    <div className='bg-default flex h-[60px] w-max flex-row items-center justify-between gap-1.5 rounded-3xl p-2'>
+    <div className='flex h-[60px] w-full flex-row items-center justify-between gap-1.5 rounded-3xl bg-foreground p-2'>
       {MenuPage.map(({ path, name, icon, type }) => (
         <div
           key={path}
@@ -37,11 +37,17 @@ const Menu = ({ pathname }: { pathname: string }) => {
           }`}>
           <Link
             to={type !== 'development' ? path : ''}
-            className='flex h-full w-full flex-col items-center justify-center px-2 py-1 text-xs font-semibold'>
+            className={`flex h-full w-full flex-col items-center justify-center px-2 py-1 text-xs font-semibold ${pathname === path ? 'text-white' : 'text-secondary-foreground'}`}>
             {icon &&
               createElement(icon.type, {
                 className: `${
-                  path === '/history' ? (pathname === path ? 'fill-white' : 'fill-secondary') : pathname === path ? 'stroke-white' : 'stroke-secondary'
+                  path === '/history' || path === '/account'
+                    ? pathname === path
+                      ? 'fill-white'
+                      : 'fill-secondary-foreground'
+                    : pathname === path
+                      ? 'stroke-white'
+                      : 'stroke-secondary-foreground'
                 }`,
               })}
             {name}
@@ -51,6 +57,7 @@ const Menu = ({ pathname }: { pathname: string }) => {
     </div>
   );
 };
+
 const SubMenuPage = [
   { path: '/order', name: 'orders', icon: <OrdersIco className='h-4 w-4' />, type: 'development' },
   { path: '/order', name: 'orders', icon: <OrdersIco className='h-4 w-4' />, type: 'development' },
@@ -61,7 +68,7 @@ const SubMenu = ({ isVisible, pathname }: { isVisible: boolean; pathname: string
   return (
     <>
       {isVisible && (
-        <div className='bg-default flex h-[60px] w-max flex-row items-center justify-between gap-1.5 rounded-3xl p-2'>
+        <div className='flex h-[60px] w-max flex-row items-center justify-between gap-1.5 rounded-3xl bg-foreground p-2'>
           {SubMenuPage.map(({ path, name, icon, type }) => (
             <div
               key={path}
@@ -74,7 +81,7 @@ const SubMenu = ({ isVisible, pathname }: { isVisible: boolean; pathname: string
               }`}>
               <Link
                 to={type !== 'development' ? path : ''}
-                className='flex h-full w-full flex-col items-center justify-center px-1.5 py-1 text-xs font-semibold'>
+                className='flex h-full w-full flex-col items-center justify-center px-1.5 py-1 text-xs font-semibold text-secondary'>
                 {icon &&
                   createElement(icon.type, {
                     className: `${

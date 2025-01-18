@@ -1,47 +1,33 @@
  .light {
-   /* Основной фон и текст */
    --background: #E3E7EE;
-   /* Фон основной области интерфейса */
-   --foreground: #231F20;
-   /* Основной текстовый цвет */
+   --foreground: #FFFFFF;
 
-   /* Карточки и всплывающие элементы */
    --card: #ffffff;
    --card-foreground: #332f2d;
    --popover: #ffffff;
    --popover-foreground: #332f2d;
 
-   /* Основные и второстепенные акценты */
    --primary: #007bff;
-   --primary-foreground: #f5faff;
-   --secondary: #707579;
-   --secondary-foreground: #df1c1c;
-   --default: #ffffff;
-   --default-foreground: #f5faff;
+   /*находится на фоне заданном цветом*/
+   --primary-foreground: #FFFFFF;
 
-   /* Мутные и приглушенные элементы */
-   --muted: #e9eff4;
-   --muted-foreground: #757575;
+   --secondary: #231F20;
+   --secondary-foreground: #707579;
+   --tertiary: #ff2600;
+   --tertiary-foreground: #ff2600;
 
-   /* Дополнительные акценты */
-   /* цвет при hover*/
-   --accent: #1087e9;
-   /* цвет текста при hover */
-   --accent-foreground: #2f2929;
 
-   /* Опасные действия */
-   --destructive: #d93838;
-   --destructive-foreground: #f5faff;
+   --muted: #ff2600;
+   --muted-foreground: #ff2600;
+   --accent: #ff2600;
+   --accent-foreground: #ff2600;
+   --destructive: #ff2600;
+   --destructive-foreground: #ff2600;
 
-   /* Границы, ввод и фокус */
-   --border: #e0e0e0;
-   /* Цвет для границ элементов */
-   --input: #e0e0e0;
-   /* Цвет фона полей ввода */
+   --border: #f30707;
+   --input: #fd0000;
    --ring: #332f2d;
-   /* Цвет фокусного кольца */
 
-   /* Графики */
    --chart-1: #f25959;
    --chart-2: #42a386;
    --chart-3: #619fc9;
@@ -49,6 +35,7 @@
    --chart-5: #6bdc6d;
 
    /* Радиус */
+   /* 1rem = 16px */
    --radius: 1rem;
  }
 

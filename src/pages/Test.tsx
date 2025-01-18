@@ -1,4 +1,4 @@
-import { PageFlow } from '@/components/PageFlow';
+import { PageFlow } from '@/components/layouts/PageFlow';
 import { useBackButton } from '@/shared/hooks/useBackButton';
 
 export default function TestPage() {

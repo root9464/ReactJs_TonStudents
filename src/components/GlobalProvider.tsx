@@ -40,8 +40,7 @@ const router = createRouter({ routeTree });
 const queryClient = new QueryClient();
 
 export const GlobalProvider = ({ defaultTheme = 'light', storageKey = 'vite-ui-theme', ...props }: ThemeProviderProps) => {
-  const isDev = import.meta.env.NODE_ENV === 'development';
-
+  const isDev = import.meta.env.DEV;
   const [theme, setTheme] = useState<Theme>(() => (localStorage.getItem(storageKey) as Theme) || defaultTheme);
 
   if (isDev) useTelegramMock();
@@ -74,7 +73,7 @@ export const GlobalProvider = ({ defaultTheme = 'light', storageKey = 'vite-ui-t
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
 
-        {isDev && (
+        {false && (
           <>
             <ReactQueryDevtools initialIsOpen={false} />
             <TanStackRouterDevtools router={router} />

@@ -1,14 +1,15 @@
-import { PageFlow } from '@components/PageFlow';
+import { Header } from '@/components/Header';
+import { PageFlow } from '@/components/layouts/PageFlow';
 import { useBackButton } from '@hooks/useBackButton';
+import { NewsModule } from '@modules/news/Module';
 
 export default function MainPage() {
   useBackButton(false);
 
   return (
     <PageFlow>
-      <div className='h-[500px] bg-blue-300'>ff</div>
-
-      <div className='h-[300px] bg-pink-300'>ff</div>
+      <Header />
+      <NewsModule />
     </PageFlow>
   );
 }
