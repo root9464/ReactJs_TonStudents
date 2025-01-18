@@ -17,7 +17,7 @@
   }
 
   * {
-    @apply border-border;
+    @apply border-border no-underline;
   }
 
   body,
@@ -37,6 +37,14 @@
 
   .safe-area {
     height: calc(var(--tg-viewport-content-safe-area-inset-top) + var(--tg-viewport-safe-area-inset-top) + 2%);
-    @apply bg-transparent backdrop-blur-[15px] fixed top-0 w-full z-[1];
+    @apply bg-transparent backdrop-blur-[15px] fixed top-0 w-full z-[50];
+  }
+
+  .shadow-secondary {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px, rgba(0, 0, 0, 0.15) 0px -5px 15px 0px;
+  }
+
+  .shadow-primary {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px -5px 15px 0px;
   }
 }

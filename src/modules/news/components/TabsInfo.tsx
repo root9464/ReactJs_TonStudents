@@ -1,38 +1,39 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useState } from 'react';
+import { motion } from 'motion/react';
+import { FC } from 'react';
 
-const TABS_CONTENT = ['О нас', 'Наши преимущества', 'Контакты'];
+type Props = {
+  id: number;
+  title: string;
+  description: string;
+};
 
-export const TabsInfo = () => {
-  const [activeTab, setActiveTab] = useState<string | null>(null);
-
-  const handleTabClick = (tab: string) => {
-    setActiveTab((prevTab) => (prevTab === tab ? null : tab));
-  };
-
+export const TabsInfo: FC<{ items: Props[] }> = ({ items }) => {
   return (
-    <Tabs className='w-max'>
+    <Tabs className='z-[1] w-full' defaultValue={items[0].title}>
       <TabsList className='h-10 rounded-md p-2'>
-        {TABS_CONTENT.map((tab) => (
-          <TabsTrigger
-            key={tab}
-            value={tab}
-            onClick={() => handleTabClick(tab)}
-            aria-selected={activeTab === tab}
-            data-state={activeTab === tab ? 'active' : 'inactive'}>
-            {tab}
+        {items.map(({ id, title }) => (
+          <TabsTrigger key={id} value={title}>
+            {title}
           </TabsTrigger>
         ))}
       </TabsList>
 
-      {TABS_CONTENT.map(
-        (tab) =>
-          activeTab === tab && (
-            <TabsContent key={tab} data-state={activeTab === tab ? 'active' : 'inactive'} className={`w-full rounded-md bg-foreground p-2`}>
-              {tab}
-            </TabsContent>
-          ),
-      )}
+      {items.map(({ id, title, description }) => (
+        <TabsContent key={id} value={title} className={`w-full rounded-md bg-foreground p-2`}>
+          <motion.div
+            className='text-secondary-foreground'
+            initial={{ opacity: 0, scale: 0.97 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 0.5,
+              ease: 'circOut',
+              delayChildren: 0.2,
+            }}>
+            {description}
+          </motion.div>
+        </TabsContent>
+      ))}
     </Tabs>
   );
 };

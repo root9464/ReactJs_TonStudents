@@ -11,7 +11,7 @@ export const MenuBar = () => {
   const { pathname } = useLocation();
 
   return (
-    <div className='fixed bottom-5 left-1/2 flex h-fit w-[calc(100%-16px)] -translate-x-1/2 transform flex-col items-center justify-center gap-2.5 bg-red-400 ssm:flex-row ssm:bg-blue-400'>
+    <div className='fixed bottom-5 left-1/2 z-10 flex h-fit w-[calc(100%-16px)] -translate-x-1/2 transform flex-col items-center justify-center gap-2.5 ssm:flex-row ssm:bg-blue-400'>
       <SubMenu isVisible={true} pathname={pathname} />
       <Menu pathname={pathname} />
     </div>
@@ -28,7 +28,7 @@ const MenuPage = [
 
 const Menu = ({ pathname }: { pathname: string }) => {
   return (
-    <div className='flex h-[60px] w-full flex-row items-center justify-between gap-1.5 rounded-3xl bg-foreground p-2'>
+    <div className='flex h-[60px] w-full flex-row items-center justify-between gap-1.5 rounded-3xl bg-foreground p-2 shadow-secondary'>
       {MenuPage.map(({ path, name, icon, type }) => (
         <div
           key={path}
@@ -68,7 +68,7 @@ const SubMenu = ({ isVisible, pathname }: { isVisible: boolean; pathname: string
   return (
     <>
       {isVisible && (
-        <div className='flex h-[60px] w-max flex-row items-center justify-between gap-1.5 rounded-3xl bg-foreground p-2'>
+        <div className='flex h-[60px] w-max flex-row items-center justify-between gap-1.5 rounded-3xl bg-foreground p-2 shadow-primary'>
           {SubMenuPage.map(({ path, name, icon, type }) => (
             <div
               key={path}
