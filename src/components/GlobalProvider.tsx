@@ -5,10 +5,12 @@ import { routeTree } from '@/routeTree.gen';
 import { useClientOnce } from '@/shared/hooks/useClientOnce';
 import { useTelegramMock } from '@/shared/hooks/useTelegramMock';
 import { init } from '@/shared/lib/initTma';
+import { HeroUIProvider } from '@heroui/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
+import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { createContext, useEffect, useState } from 'react';
 
 declare module '@tanstack/react-router' {
@@ -69,17 +71,21 @@ export const GlobalProvider = ({ defaultTheme = 'light', storageKey = 'vite-ui-t
   };
 
   return (
-    <ThemeProviderContext.Provider {...props} value={themeContextValue}>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+    <TonConnectUIProvider manifestUrl={'https://taiga-labs.github.io/gorelko.json'}>
+      <ThemeProviderContext.Provider {...props} value={themeContextValue}>
+        <HeroUIProvider>
+          <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router} />
 
-        {isDev && (
-          <>
-            <ReactQueryDevtools initialIsOpen={false} />
-            <TanStackRouterDevtools router={router} />
-          </>
-        )}
-      </QueryClientProvider>
-    </ThemeProviderContext.Provider>
+            {isDev && (
+              <>
+                <ReactQueryDevtools initialIsOpen={false} />
+                <TanStackRouterDevtools router={router} />
+              </>
+            )}
+          </QueryClientProvider>
+        </HeroUIProvider>
+      </ThemeProviderContext.Provider>
+    </TonConnectUIProvider>
   );
 };

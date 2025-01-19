@@ -3,11 +3,15 @@ import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 import { defineConfig } from 'vite';
+import { nodePolyfills } from 'vite-plugin-node-polyfills';
 
 export default defineConfig({
   plugins: [
     react(),
     TanStackRouterVite(),
+    nodePolyfills({
+      include: ['buffer'],
+    }),
     svgr({
       include: '**/*.svg',
 

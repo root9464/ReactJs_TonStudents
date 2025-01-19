@@ -22,7 +22,7 @@
 
   body,
   html {
-    @apply bg-background text-secondary w-full min-h-screen h-tma no-underline overflow-x-hidden;
+    @apply bg-background text-secondary w-screen min-h-screen h-tma no-underline overflow-x-hidden;
   }
 
 
@@ -41,10 +41,14 @@
   }
 
   .shadow-secondary {
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px, rgba(0, 0, 0, 0.15) 0px -5px 15px 0px;
+    box-shadow: rgba(35, 31, 32, 0.15) 0px 5px 15px 0px, rgba(35, 31, 32, 0.15) 0px -5px 15px 0px;
   }
 
   .shadow-primary {
-    box-shadow: rgba(0, 0, 0, 0.15) 0px -5px 15px 0px;
+    box-shadow: rgba(35, 31, 32, 0.15) 0px -5px 15px 0px;
+  }
+
+  .shadow-tertiary {
+    box-shadow: rgb(255, 0, 64) 0px -25px 20px -20px;
   }
 }

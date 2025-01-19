@@ -1,5 +1,4 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { motion } from 'motion/react';
+import { Card, CardBody, Tab, Tabs } from '@heroui/react';
 import { FC } from 'react';
 
 type Props = {
@@ -10,30 +9,25 @@ type Props = {
 
 export const TabsInfo: FC<{ items: Props[] }> = ({ items }) => {
   return (
-    <Tabs className='z-[1] w-full' defaultValue={items[0].title}>
-      <TabsList className='h-10 rounded-md p-2'>
-        {items.map(({ id, title }) => (
-          <TabsTrigger key={id} value={title}>
-            {title}
-          </TabsTrigger>
+    <div className='z-[1] flex w-full flex-col'>
+      <Tabs
+        aria-label='Options'
+        classNames={{
+          tabList: 'rounded-md bg-foreground',
+          panel: 'mt-2 p-0 shadow-none border-none',
+          cursor: 'bg-primary rounded-md',
+          tabContent: 'group-data-[selected=true]:text-foreground group-data-[selected=false]:text-secondary-foreground rounded-md ',
+        }}>
+        {items.map((item) => (
+          <Tab key={item.id} title={item.title} className='w-full rounded-md'>
+            <Card className='shadow-none'>
+              <CardBody className='w-full px-4 py-2 text-secondary-foreground'>
+                <p>{item.description}</p>
+              </CardBody>
+            </Card>
+          </Tab>
         ))}
-      </TabsList>
-
-      {items.map(({ id, title, description }) => (
-        <TabsContent key={id} value={title} className={`w-full rounded-md bg-foreground p-2`}>
-          <motion.div
-            className='text-secondary-foreground'
-            initial={{ opacity: 0, scale: 0.97 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              duration: 0.5,
-              ease: 'circOut',
-              delayChildren: 0.2,
-            }}>
-            {description}
-          </motion.div>
-        </TabsContent>
-      ))}
-    </Tabs>
+      </Tabs>
+    </div>
   );
 };
