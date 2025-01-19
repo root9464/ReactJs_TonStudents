@@ -9,7 +9,7 @@ export const ConnectWalletButton = () => {
     <>
       {address ? (
         <Button
-          className='flex h-10 w-full items-center justify-between place-self-end rounded-lg bg-primary px-3 py-2 text-base font-medium text-white'
+          className='rounded-xs flex h-10 w-full items-center justify-between place-self-end bg-primary px-3 py-2 text-base font-medium text-white'
           onPress={() => tonConnectUI.disconnect()}>
           <div className='flex flex-row items-center gap-2.5'>
             <Wallet className='h-6 w-6 stroke-foreground stroke-[1.2]' />
@@ -19,7 +19,7 @@ export const ConnectWalletButton = () => {
         </Button>
       ) : (
         <Button
-          className='flex h-10 w-full items-center gap-2.5 place-self-end rounded-lg bg-primary px-3 py-2 text-base font-medium text-white'
+          className='rounded-xs flex h-10 w-full items-center gap-2.5 place-self-end bg-primary px-3 py-2 text-base font-medium text-white'
           onPress={() => tonConnectUI.modal.open()}>
           <Wallet className='h-6 w-6 stroke-foreground stroke-[1.2]' />
           <h3>Подключить кошелек</h3>

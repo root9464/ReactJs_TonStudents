@@ -14,11 +14,22 @@ export default {
   theme: {
     extend: {
       borderRadius: {
-        '5xl': '28px',
-        '4xl': '26px',
-        lg: '16px',
-        md: '18px',
-        sm: '20px',
+        xxs: '13px',
+        xs: '16px',
+        sm: '18px',
+        md: '20px',
+        lg: '22px',
+        xl: '24px',
+        '2xl': '26px',
+        '3xl': '28px',
+        '4xl': '30px',
+        '5xl': '32px',
+        '6xl': '34px',
+        '7xl': '36px',
+        '8xl': '38px',
+        '9xl': '40px',
+        xxl: '42px',
+        xxxl: '44px',
       },
       colors: {
         background: 'var(--background)',
@@ -44,8 +55,9 @@ export default {
           foreground: 'var(--tertiary-foreground)',
         },
         muted: {
-          DEFAULT: 'var(--muted)',
-          foreground: 'var(--muted-foreground)',
+          DEFAULT: 'var(--muted-primary)',
+          secondary: 'var(--muted-secondary)',
+          tertiary: 'var(--muted-tertiary)',
         },
         accent: {
           DEFAULT: 'var(--accent)',

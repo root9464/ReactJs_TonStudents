@@ -6,7 +6,7 @@ import { NEWS_POSTS } from './mock/mock';
 
 export const NewsModule = () => {
   return (
-    <ModuleFlow className='h-screen'>
+    <ModuleFlow className='h-max'>
       <TabsInfo items={NEWS_POSTS} />
       <AccordionInfo />
       <motion.div

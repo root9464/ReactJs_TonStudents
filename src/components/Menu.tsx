@@ -28,11 +28,11 @@ const MenuPage = [
 
 const Menu = ({ pathname }: { pathname: string }) => {
   return (
-    <div className='flex h-[60px] w-full flex-row items-center justify-between gap-1.5 rounded-3xl bg-foreground p-2 shadow-secondary'>
+    <div className='flex h-[60px] w-full flex-row items-center justify-between gap-1.5 rounded-xl bg-foreground p-2 shadow-secondary'>
       {MenuPage.map(({ path, name, icon, type }) => (
         <div
           key={path}
-          className={`h-full w-[65px] rounded-2xl ${
+          className={`h-full w-[65px] rounded-sm ${
             pathname === path ? 'bg-primary text-white' : type === 'development' ? 'border-2 border-dashed border-black bg-[#F2E700]' : 'text-secondary'
           }`}>
           <Link
@@ -68,11 +68,11 @@ const SubMenu = ({ isVisible, pathname }: { isVisible: boolean; pathname: string
   return (
     <>
       {isVisible && (
-        <div className='flex h-[60px] w-max flex-row items-center justify-between gap-1.5 rounded-3xl bg-foreground p-2 shadow-primary'>
+        <div className='flex h-[60px] w-max flex-row items-center justify-between gap-1.5 rounded-xl bg-foreground p-2 shadow-primary'>
           {SubMenuPage.map(({ path, name, icon, type }) => (
             <div
               key={path}
-              className={`h-full w-[65px] rounded-2xl ${
+              className={`h-full w-[65px] rounded-sm ${
                 pathname === path
                   ? 'bg-primary text-white'
                   : type === 'development'

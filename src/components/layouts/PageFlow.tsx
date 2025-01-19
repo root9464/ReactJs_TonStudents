@@ -14,7 +14,7 @@ export const PageFlow = ({ children, className, ...props }: { children: ReactNod
     <>
       <div className='safe-area' />
       <div className={cn(`relative h-full w-full bg-background px-2 ${className}`)} {...props}>
-        <div className='flex flex-1 flex-col gap-5 py-5 pb-24'>{children}</div>
+        <div className='flex flex-1 flex-col gap-5 py-5 pb-[calc(96px+60px+30px)]'>{children}</div>
       </div>
     </>
   );

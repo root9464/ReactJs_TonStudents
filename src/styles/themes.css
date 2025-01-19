@@ -17,8 +17,10 @@
    --tertiary-foreground: #ff2600;
 
 
-   --muted: #E3E7EE;
-   --muted-foreground: #ff2600;
+   --muted-primary: #6F819E;
+   --muted-secondary: #E3E7EE;
+   --muted-tertiary: #ff2600;
+
    --accent: #ff2600;
    --accent-foreground: #ff2600;
    --destructive: #ff2600;
