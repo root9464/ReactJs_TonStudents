@@ -27,6 +27,7 @@ export function useTelegramMock(): void {
             last_name: 'Rogue',
             username: 'rogue',
             language_code: 'en',
+            photoUrl: 'https://htmlcolorcodes.com/assets/images/colors/grass-green-color-solid-background-1920x1080.png',
             is_premium: true,
             allows_write_to_pm: true,
           }),
