@@ -16,7 +16,10 @@ export const Header = () => (
     whileTap={shakeAnimation}
     onTap={() => hapticFeedback.notificationOccurred('success')}>
     <div className='flex flex-col'>
-      <h1 className='text-2xl font-semibold'>TonStudents</h1>
+      <div className='flex flex-row items-center justify-between'>
+        <h1 className='text-2xl font-semibold'>TonStudents</h1>
+        <div className='rounded-xxs bg-slate-600/25 px-1.5 py-0.5 text-xxs font-medium'>beta</div>
+      </div>
       <p className='text-xxs font-medium'>не парься из за зачетов — купи зачет</p>
     </div>
     <Logo className='h-8 w-8 fill-primary' />
