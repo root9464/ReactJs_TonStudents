@@ -15,7 +15,14 @@ export const ProfileModule = () => {
     <ModuleFlow>
       {isLoading && <ProfileSkeleton />}
 
-      {isSuccess && data && <ProfileCard userName={data.data.username} firstName={data.data.username} />}
+      {isSuccess && data && (
+        <ProfileCard
+          userName={data.user.username}
+          firstName={data.user.username}
+          title={data.user.infos?.[0]?.title ?? ''}
+          description={data.user.infos?.[0]?.content ?? ''}
+        />
+      )}
 
       {isError && <p>{dataRaw}</p>}
       <PaidSubscription />

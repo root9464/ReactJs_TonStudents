@@ -38,8 +38,8 @@ export const useAuth = (userDataRaw: string) =>
       const { data: UserData } = await axiosInstance.post<UserAuthType>('/api/auth/authorize', {
         'init-data-raw': userDataRaw,
       });
-      const { data, token } = validateResult(UserData, UserAuthSchema);
-      return { data, token };
+      const { data: user, token } = validateResult(UserData, UserAuthSchema);
+      return { user, token };
     },
 
     enabled: !!userDataRaw,
