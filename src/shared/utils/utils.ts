@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const validateResult = <T>(data: unknown, resType: z.ZodType<T>) => {
+export const validateResult = <T, U>(data: U, resType: z.ZodType<T>) => {
   try {
     return resType.parse(data);
   } catch (error) {

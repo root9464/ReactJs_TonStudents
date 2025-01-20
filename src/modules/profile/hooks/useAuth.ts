@@ -14,16 +14,16 @@ const TokenSchema = z.object({
   refreshToken: z.string(),
 });
 
-const DataSchema = z.object({
+const UserDataSchema = z.object({
   id: z.number(),
   username: z.string(),
   role: z.string(),
   hash: z.string(),
-  infos: z.array(InfoSchema),
+  infos: z.array(InfoSchema).optional().nullable(),
 });
 
 const UserAuthSchema = z.object({
-  data: DataSchema,
+  data: UserDataSchema,
   message: z.string(),
   status: z.string(),
   token: TokenSchema,
@@ -35,11 +35,10 @@ export const useAuth = (userDataRaw: string) =>
   useQuery({
     queryKey: ['auth', userDataRaw],
     queryFn: async () => {
-      const response = await axiosInstance.post<UserAuthType>('/api/auth/authorize', {
-        init_data_raw: userDataRaw,
+      const { data: UserData } = await axiosInstance.post<UserAuthType>('/api/auth/authorize', {
+        'init-data-raw': userDataRaw,
       });
-      const { data, token } = validateResult(response, UserAuthSchema);
-
+      const { data, token } = validateResult(UserData, UserAuthSchema);
       return { data, token };
     },
 
