@@ -1,15 +1,18 @@
 import { ReactComponent as Notifications } from '@/assets/svg/notificationsIcon.svg';
+import { ReactComponent as Change } from '@/assets/svg/penIcon.svg';
 import { ReactComponent as Save } from '@/assets/svg/saveIcon.svg';
 import { ReactComponent as Clear } from '@/assets/svg/xIcon.svg';
+
 import { ConnectWalletButton } from '../widgets/ConnetWalletButton';
 
 import { ReactComponent as Basket } from '@/assets/svg/basketIcon.svg';
 import { Alert } from '@heroui/react';
+import { useQueryClient } from '@tanstack/react-query';
 import { initDataRaw, initDataUser } from '@telegram-apps/sdk-react';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { useAddInfo } from '../hooks/useAddInfo';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth, UserAuthType } from '../hooks/useAuth';
+import { useAddInfo, useDeleteInfo } from '../hooks/useUser';
 import { ProfileSkeleton } from './skeletons/ProfileSkeleton';
 
 export const ProfileCard = () => {
@@ -24,9 +27,14 @@ export const ProfileCard = () => {
 
           <div className='grid w-full auto-rows-max gap-4'>
             {data?.user.infos && data.user.infos.length > 0 && isSuccess ? (
-              <InformationContainer title={data.user.infos?.[0]?.title} description={data.user.infos?.[0]?.content} />
+              <InformationContainer
+                id={data.user.infos[0].id}
+                title={data.user.infos?.[0]?.title}
+                description={data.user.infos?.[0]?.content}
+                refetch={refetch}
+              />
             ) : (
-              <FormInformation refetch={refetch} />
+              <FormInformation />
             )}
             <ButtonsContainer />
           </div>
@@ -52,16 +60,44 @@ const Header: FC<{ userName: string; firstName: string }> = ({ userName, firstNa
 );
 
 type InformationContainerProps = {
+  id: string;
   title: string;
   description: string;
+  refetch: () => void;
 };
 
-const InformationContainer: FC<InformationContainerProps> = ({ title, description }) => (
-  <div className='flex h-fit w-full flex-col gap-2'>
-    <h2 className='text-xl font-medium text-muted opacity-60'>{title}</h2>
-    <p className='w-full break-all text-base font-medium'>{description}</p>
-  </div>
-);
+const InformationContainer: FC<InformationContainerProps> = ({ id, title, description }) => {
+  const queryClient = useQueryClient();
+  const dataRaw = initDataRaw();
+
+  const { data, isSuccess, mutate } = useDeleteInfo();
+
+  const cachedUserData: UserAuthType | undefined = queryClient.getQueryData(['auth', dataRaw]);
+
+  if (isSuccess && data) {
+    console.log('deleted', data);
+    queryClient.refetchQueries({ queryKey: ['auth', dataRaw] });
+  }
+
+  return (
+    <div className='grid h-fit w-full grid-cols-[1fr_auto] gap-2'>
+      <div className='flex w-full flex-col gap-2'>
+        <h2 className='text-xl font-medium text-muted opacity-60'>{title}</h2>
+        <p className='w-full break-all text-base font-medium'>{description}</p>
+      </div>
+      <div className='flex h-full w-fit flex-col gap-1 justify-self-start'>
+        <button className='h-fit w-fit rounded-xxs bg-muted-secondary p-2'>
+          <Change className='h-5 w-5 stroke-secondary-foreground stroke-[1.2]' />
+        </button>
+        <button
+          className='h-fit w-fit rounded-xxs bg-[#E91E65] p-2'
+          onClick={() => mutate({ infoId: id, accessToken: cachedUserData?.token.accessToken ?? '' })}>
+          <Clear className='h-5 w-5 stroke-foreground stroke-[1.2]' />
+        </button>
+      </div>
+    </div>
+  );
+};
 
 const ButtonsContainer = () => (
   <div className='flex h-fit w-full flex-row justify-start gap-1.5'>
@@ -81,7 +117,7 @@ type FormInformation = {
   content: string;
 };
 
-const FormInformation = ({ refetch }: { refetch: () => void }) => {
+const FormInformation = () => {
   const { formState, register, handleSubmit, reset } = useForm<FormInformation>({
     defaultValues: {
       title: '',
@@ -89,11 +125,18 @@ const FormInformation = ({ refetch }: { refetch: () => void }) => {
     },
     mode: 'onChange',
   });
-  const { mutate } = useAddInfo(refetch);
+  const { data, mutate, isSuccess } = useAddInfo();
   const UserInitData = initDataUser();
+  const queryClient = useQueryClient();
+  const dataRaw = initDataRaw();
+  const cachedUserData: UserAuthType | undefined = queryClient.getQueryData(['auth', dataRaw]);
+
+  if (isSuccess && data) {
+    queryClient.refetchQueries({ queryKey: ['auth', dataRaw] });
+  }
 
   const onSubmit = ({ title, content }: FormInformation) => {
-    if (UserInitData) mutate({ userId: UserInitData.id, title, content });
+    if (UserInitData) mutate({ userId: UserInitData.id, title, content, accessToken: cachedUserData?.token.accessToken ?? '' });
   };
 
   return (

@@ -5,6 +5,7 @@ import { z } from 'zod';
 
 const InfoSchema = z.object({
   userId: z.number(),
+  id: z.string(),
   title: z.string(),
   content: z.string(),
 });
