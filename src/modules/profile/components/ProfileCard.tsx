@@ -8,29 +8,31 @@ import { ConnectWalletButton } from '../widgets/ConnetWalletButton';
 import { ReactComponent as Basket } from '@/assets/svg/basketIcon.svg';
 import { Alert } from '@heroui/react';
 import { useQueryClient } from '@tanstack/react-query';
-import { initDataRaw, initDataUser } from '@telegram-apps/sdk-react';
+import { useLaunchParams } from '@telegram-apps/sdk-react';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { useAuth, UserAuthType } from '../hooks/useAuth';
-import { useAddInfo, useDeleteInfo } from '../hooks/useUser';
+import { useAddInfo, useAuth, useDeleteInfo, useGetUser } from '../hooks/useUser';
 import { ProfileSkeleton } from './skeletons/ProfileSkeleton';
 
 export const ProfileCard = () => {
-  const dataRaw = initDataRaw();
-  const { data, isSuccess, isLoading, isError, refetch } = useAuth(dataRaw ?? '');
+  const { initDataRaw, initData } = useLaunchParams();
+
+  const { data: AuthorizeData } = useAuth(initDataRaw ?? '');
+
+  const { data: UserData, isSuccess, isLoading, isError, refetch } = useGetUser(initData?.user?.id ?? 0, AuthorizeData?.accessToken ?? '');
 
   return (
     <>
-      {isSuccess && data && (
+      {AuthorizeData && (
         <div className='relative grid h-fit w-full auto-rows-max gap-4 rounded-5xl bg-foreground p-3.5'>
-          <Header userName={data.user.username} firstName={data.user.username} />
+          <Header userName={initData?.user?.username ?? ''} firstName={initData?.user?.firstName ?? ''} />
 
           <div className='grid w-full auto-rows-max gap-4'>
-            {data?.user.infos && data.user.infos.length > 0 && isSuccess ? (
+            {UserData?.data.infos && UserData?.data.infos?.[0]?.id && isSuccess ? (
               <InformationContainer
-                id={data.user.infos[0].id}
-                title={data.user.infos?.[0]?.title}
-                description={data.user.infos?.[0]?.content}
+                id={UserData?.data.infos[0].id}
+                title={UserData?.data.infos?.[0]?.title}
+                description={UserData?.data.infos?.[0]?.content}
                 refetch={refetch}
               />
             ) : (
@@ -68,15 +70,15 @@ type InformationContainerProps = {
 
 const InformationContainer: FC<InformationContainerProps> = ({ id, title, description }) => {
   const queryClient = useQueryClient();
-  const dataRaw = initDataRaw();
+  const { initData, initDataRaw } = useLaunchParams();
 
   const { data, isSuccess, mutate } = useDeleteInfo();
 
-  const cachedUserData: UserAuthType | undefined = queryClient.getQueryData(['auth', dataRaw]);
+  const cachedAuthData: { accessToken: string; refreshToken: string } | undefined = queryClient.getQueryData(['auth', initDataRaw]);
 
   if (isSuccess && data) {
     console.log('deleted', data);
-    queryClient.refetchQueries({ queryKey: ['auth', dataRaw] });
+    queryClient.refetchQueries({ queryKey: ['user', initData?.user?.id] });
   }
 
   return (
@@ -91,7 +93,7 @@ const InformationContainer: FC<InformationContainerProps> = ({ id, title, descri
         </button>
         <button
           className='h-fit w-fit rounded-xxs bg-[#E91E65] p-2'
-          onClick={() => mutate({ infoId: id, accessToken: cachedUserData?.token.accessToken ?? '' })}>
+          onClick={() => mutate({ infoId: id, accessToken: cachedAuthData?.accessToken ?? '' })}>
           <Clear className='h-5 w-5 stroke-foreground stroke-[1.2]' />
         </button>
       </div>
@@ -125,19 +127,18 @@ const FormInformation = () => {
     },
     mode: 'onChange',
   });
+  const { initData, initDataRaw } = useLaunchParams();
   const { data, mutate, isSuccess } = useAddInfo();
-  const UserInitData = initDataUser();
   const queryClient = useQueryClient();
-  const dataRaw = initDataRaw();
-  const cachedUserData: UserAuthType | undefined = queryClient.getQueryData(['auth', dataRaw]);
-
-  if (isSuccess && data) {
-    queryClient.refetchQueries({ queryKey: ['auth', dataRaw] });
-  }
+  const cachedAuthData: { accessToken: string; refreshToken: string } | undefined = queryClient.getQueryData(['auth', initDataRaw]);
 
   const onSubmit = ({ title, content }: FormInformation) => {
-    if (UserInitData) mutate({ userId: UserInitData.id, title, content, accessToken: cachedUserData?.token.accessToken ?? '' });
+    if (initData) mutate({ userId: initData.user?.id ?? 0, title, content, accessToken: cachedAuthData?.accessToken ?? '' });
   };
+
+  if (isSuccess && data) {
+    queryClient.refetchQueries({ queryKey: ['user', initData?.user?.id] });
+  }
 
   return (
     <div className='flex h-fit w-full flex-col gap-2'>
