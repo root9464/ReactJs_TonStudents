@@ -16,7 +16,7 @@ export const TabsInfo: FC<{ items: Props[] }> = ({ items }) => {
           tabList: 'rounded-md bg-foreground',
           panel: 'mt-2 p-0 shadow-none border-none',
           cursor: 'bg-primary rounded-md',
-          tabContent: 'group-data-[selected=true]:text-foreground group-data-[selected=false]:text-secondary-foreground rounded-md ',
+          tabContent: 'group-data-[selected=true]:text-primary-foreground group-data-[selected=false]:text-secondary-foreground rounded-md ',
         }}>
         {items.map((item) => (
           <Tab key={item.id} title={item.title} className='w-full rounded-md'>

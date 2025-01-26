@@ -103,13 +103,13 @@ const InformationContainer: FC<InformationContainerProps> = ({ id, title, descri
 
 const ButtonsContainer = () => (
   <div className='flex h-fit w-full flex-row justify-start gap-1.5'>
-    <div className='flex h-fit w-fit flex-row items-center gap-1 rounded-xxs bg-muted-secondary p-1.5 text-secondary-foreground'>
-      <Notifications className='h-fit w-fit stroke-secondary-foreground stroke-[1.2] opacity-60' />
-      <p className='opacity-60'>5</p>
+    <div className='flex h-fit w-fit flex-row items-center gap-1 rounded-xxs bg-muted-secondary p-2 text-secondary'>
+      <Notifications className='h-fit w-fit stroke-secondary stroke-[1.2]' />
+      <p className=''>5</p>
     </div>
-    <div className='flex h-fit w-fit flex-row items-center gap-1 rounded-xxs bg-muted-secondary p-1.5 text-secondary-foreground'>
-      <Basket className='h-fit w-full stroke-secondary-foreground stroke-[1.2] opacity-60' />
-      <p className='opacity-60'>Заказы</p>
+    <div className='flex h-fit w-fit flex-row items-center gap-1 rounded-xxs bg-muted-secondary p-2 text-secondary'>
+      <Basket className='h-fit w-full stroke-secondary stroke-[1.2]' />
+      <p className=''>Заказы</p>
     </div>
   </div>
 );

@@ -14,7 +14,8 @@ export const PaidSubscription = () => {
   const { data: PaymentLink, isSuccess, isError, error, mutate } = usePayment();
 
   const openInvoice = async (paymentUrl: string) => {
-    return await invoice.open(paymentUrl, 'url');
+    console.log(paymentUrl);
+    await invoice.open(paymentUrl, 'url');
   };
 
   return (
@@ -28,7 +29,7 @@ export const PaidSubscription = () => {
       {PaymentLink ? (
         <Button
           onPress={async () => await openInvoice(PaymentLink)}
-          className='flex h-10 w-full items-center justify-between place-self-end rounded-xs bg-primary px-3 py-2 text-base font-medium text-white'>
+          className='flex h-10 w-full items-center justify-between place-self-end rounded-sm bg-primary px-3 py-2 text-base font-medium text-white'>
           Оплатить
           <div className='flex flex-row items-center gap-2.5'>
             <p className='font-medium opacity-70'>500</p>
@@ -38,7 +39,7 @@ export const PaidSubscription = () => {
       ) : (
         <Button
           onPress={() => mutate({ userId: initData?.user?.id ?? 0, accessToken: cachedAuthData?.accessToken ?? '' })}
-          className='flex h-10 w-full items-center justify-between place-self-end rounded-xs bg-primary px-3 py-2 text-base font-medium text-white'>
+          className='flex h-10 w-full items-center justify-between place-self-end rounded-sm bg-primary px-3 py-2 text-base font-medium text-white'>
           Сгенерировать
           <div className='flex flex-row items-center gap-2.5'>
             <p className='font-medium opacity-70'>500</p>

@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as TestIndexImport } from './routes/test/index'
+import { Route as StoreIndexImport } from './routes/store/index'
 import { Route as AccountIndexImport } from './routes/account/index'
 
 // Create/Update Routes
@@ -26,6 +27,12 @@ const IndexRoute = IndexImport.update({
 const TestIndexRoute = TestIndexImport.update({
   id: '/test/',
   path: '/test/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const StoreIndexRoute = StoreIndexImport.update({
+  id: '/store/',
+  path: '/store/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -53,6 +60,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccountIndexImport
       parentRoute: typeof rootRoute
     }
+    '/store/': {
+      id: '/store/'
+      path: '/store'
+      fullPath: '/store'
+      preLoaderRoute: typeof StoreIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/test/': {
       id: '/test/'
       path: '/test'
@@ -68,12 +82,14 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/account': typeof AccountIndexRoute
+  '/store': typeof StoreIndexRoute
   '/test': typeof TestIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/account': typeof AccountIndexRoute
+  '/store': typeof StoreIndexRoute
   '/test': typeof TestIndexRoute
 }
 
@@ -81,27 +97,30 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/account/': typeof AccountIndexRoute
+  '/store/': typeof StoreIndexRoute
   '/test/': typeof TestIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/account' | '/test'
+  fullPaths: '/' | '/account' | '/store' | '/test'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/account' | '/test'
-  id: '__root__' | '/' | '/account/' | '/test/'
+  to: '/' | '/account' | '/store' | '/test'
+  id: '__root__' | '/' | '/account/' | '/store/' | '/test/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccountIndexRoute: typeof AccountIndexRoute
+  StoreIndexRoute: typeof StoreIndexRoute
   TestIndexRoute: typeof TestIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccountIndexRoute: AccountIndexRoute,
+  StoreIndexRoute: StoreIndexRoute,
   TestIndexRoute: TestIndexRoute,
 }
 
@@ -117,6 +136,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/account/",
+        "/store/",
         "/test/"
       ]
     },
@@ -125,6 +145,9 @@ export const routeTree = rootRoute
     },
     "/account/": {
       "filePath": "account/index.tsx"
+    },
+    "/store/": {
+      "filePath": "store/index.tsx"
     },
     "/test/": {
       "filePath": "test/index.tsx"

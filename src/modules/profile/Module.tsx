@@ -4,7 +4,7 @@ import { PaidSubscription } from './components/PaidSubscription';
 import { ProfileCard } from './components/ProfileCard';
 
 export const ProfileModule = () => {
-  useBackButton(true, () => alert('back'));
+  useBackButton(true);
 
   return (
     <ModuleFlow>

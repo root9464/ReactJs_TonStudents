@@ -1,24 +1,24 @@
  .light {
-   --background: #E3E7EE;
-   --foreground: #FFFFFF;
+   --background: 227, 231, 238;
+   --foreground: 255, 255, 255;
 
-   --card: #ffffff;
-   --card-foreground: #332f2d;
-   --popover: #ffffff;
-   --popover-foreground: #332f2d;
+   --card: 255, 255, 255;
+   --card-foreground: 51, 47, 45;
+   --popover: 255, 255, 255;
+   --popover-foreground: 51, 47, 45;
 
-   --primary: #007bff;
+   --primary: 6, 65, 251;
    /*находится на фоне заданном цветом*/
-   --primary-foreground: #FFFFFF;
+   --primary-foreground: 255, 255, 255;
 
-   --secondary: #231F20;
-   --secondary-foreground: #707579;
-   --tertiary: #ff2600;
+   --secondary: 35, 31, 32;
+   --secondary-foreground: 112, 117, 121;
+   --tertiary: 255, 38, 0;
    --tertiary-foreground: #ff2600;
 
 
-   --muted-primary: #6F819E;
-   --muted-secondary: #E3E7EE;
+   --muted-primary: 111, 129, 158;
+   --muted-secondary: 227, 231, 238;
    --muted-tertiary: #ff2600;
 
    --accent: #ff2600;

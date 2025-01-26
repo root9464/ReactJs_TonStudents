@@ -36,11 +36,11 @@ const InformationContainerSkeleton = () => (
 
 const ButtonsContainerSkeleton = () => (
   <div className='flex h-fit w-full flex-row justify-start gap-1.5'>
-    <div className='flex h-fit w-fit flex-row items-center gap-1 rounded-xxs bg-muted-secondary p-1.5 text-secondary-foreground'>
+    <div className='flex h-fit w-fit flex-row items-center gap-1 rounded-xxs bg-muted-secondary p-2 text-secondary-foreground'>
       <Skeleton className='h-5 w-5 rounded-full' />
       <Skeleton className='h-5 w-8 rounded-md' />
     </div>
-    <div className='flex h-fit w-fit flex-row items-center gap-1 rounded-xxs bg-muted-secondary p-1.5 text-secondary-foreground'>
+    <div className='flex h-fit w-fit flex-row items-center gap-1 rounded-xxs bg-muted-secondary p-2 text-secondary-foreground'>
       <Skeleton className='h-5 w-5 rounded-full' />
       <Skeleton className='h-5 w-12 rounded-md' />
     </div>

@@ -14,7 +14,7 @@ export default {
   theme: {
     extend: {
       borderRadius: {
-        xxs: '13px',
+        xxs: '12px',
         xs: '16px',
         sm: '18px',
         md: '20px',
@@ -32,44 +32,45 @@ export default {
         xxxl: '44px',
       },
       colors: {
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
+        background: 'rgb(var(--background))',
+        foreground: 'rgb(var(--foreground))',
         card: {
-          DEFAULT: 'var(--card)',
-          foreground: 'var(--card-foreground)',
+          DEFAULT: 'rgb(var(--card))',
+          foreground: 'rgb(var(--card-foreground))',
         },
         popover: {
-          DEFAULT: 'var(--popover)',
-          foreground: 'var(--popover-foreground)',
+          DEFAULT: 'rgb(var(--popover))',
+          foreground: 'rgb(var(--popover-foreground))',
         },
         primary: {
-          DEFAULT: 'var(--primary)',
-          foreground: 'var(--primary-foreground)',
+          DEFAULT: 'rgb(var(--primary))',
+          foreground: 'rgb(var(--primary-foreground))',
+          '20': 'rgba(var(--primary), 0.2)',
         },
         secondary: {
-          DEFAULT: 'var(--secondary)',
-          foreground: 'var(--secondary-foreground)',
+          DEFAULT: 'rgb(var(--secondary))',
+          foreground: 'rgb(var(--secondary-foreground))',
         },
         tertiary: {
-          DEFAULT: 'var(--tertiary)',
-          foreground: 'var(--tertiary-foreground)',
+          DEFAULT: 'rgb(var(--tertiary))',
+          foreground: 'rgb(var(--tertiary-foreground))',
         },
         muted: {
-          DEFAULT: 'var(--muted-primary)',
-          secondary: 'var(--muted-secondary)',
-          tertiary: 'var(--muted-tertiary)',
+          DEFAULT: 'rgb(var(--muted-primary))',
+          secondary: 'rgb(var(--muted-secondary))',
+          tertiary: 'rgb(var(--muted-tertiary))',
         },
         accent: {
-          DEFAULT: 'var(--accent)',
-          foreground: 'var(--accent-foreground)',
+          DEFAULT: 'rgb(var(--accent))',
+          foreground: 'rgb(var(--accent-foreground))',
         },
         destructive: {
-          DEFAULT: 'var(--destructive)',
-          foreground: 'var(--destructive-foreground)',
+          DEFAULT: 'rgb(var(--destructive))',
+          foreground: 'rgb(var(--destructive-foreground))',
         },
-        border: 'var(--border)',
-        input: 'var(--input)',
-        ring: 'var(--ring)',
+        border: 'rgb(var(--border))',
+        input: 'rgb(var(--input))',
+        ring: 'rgb(var(--ring))',
       },
       fontSize: {
         xxs: ['10px', '14px'],

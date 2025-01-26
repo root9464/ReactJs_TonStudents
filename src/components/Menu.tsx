@@ -21,7 +21,7 @@ export const MenuBar = () => {
 const MenuPage = [
   { path: '/', name: 'Home', icon: <HomeIco className='h-4 w-4' /> },
   { path: '/account', name: 'Account', icon: <AccountIco className='h-4 w-4' /> },
-  { path: '/store', name: 'Store', icon: <StoreIco className='h-4 w-4' />, type: 'development' },
+  { path: '/store', name: 'Store', icon: <StoreIco className='h-4 w-4' /> },
   { path: '/history', name: 'History', icon: <HistoryIco className='h-4 w-4' />, type: 'development' },
   { path: '/test', name: 'Test' },
 ];
