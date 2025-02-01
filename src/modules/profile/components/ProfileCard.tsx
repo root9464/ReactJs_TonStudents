@@ -6,11 +6,11 @@ import { ReactComponent as Clear } from '@/assets/svg/xIcon.svg';
 import { ConnectWalletButton } from '../widgets/ConnetWalletButton';
 
 import { ReactComponent as Basket } from '@/assets/svg/basketIcon.svg';
-import { UserRole } from '@/components/GlobalProvider';
+import { UserRole, UserRoleAtom } from '@/modules/service/store/UserRoleStore';
 import { Alert } from '@heroui/react';
 import { useQueryClient } from '@tanstack/react-query';
-import { useRouter } from '@tanstack/react-router';
 import { useLaunchParams } from '@telegram-apps/sdk-react';
+import { useAtom } from 'jotai';
 import { FC, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAddInfo, useAuth, useDeleteInfo, useGetUser } from '../hooks/useUser';
@@ -21,16 +21,12 @@ export const ProfileCard = () => {
   const { data: AuthorizeData } = useAuth(initDataRaw ?? '');
   const { data: UserData, isSuccess, isLoading, isError, refetch } = useGetUser(initData?.user?.id ?? 0, AuthorizeData?.accessToken ?? '');
 
-  const router = useRouter();
+  const [, setRole] = useAtom(UserRoleAtom);
   useEffect(() => {
     if (UserData && isSuccess) {
-      router.update({
-        context: { userRole: UserData.data.role as UserRole },
-      });
+      setRole(UserData.data.role as UserRole);
     }
-  }, [UserData, isSuccess, router]);
-
-  console.log(UserData?.data.role, 'role');
+  }, [UserData, isSuccess, setRole]);
 
   return (
     <>

@@ -1,12 +1,7 @@
-import { UserRole } from '@/components/GlobalProvider';
-import { MenuBar } from '@components/Menu';
-import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
+import { RootLayout } from '@/components/layouts/RootLayout';
+import { UserRole } from '@/modules/service/store/UserRoleStore';
+import { createRootRouteWithContext } from '@tanstack/react-router';
 
 export const Route = createRootRouteWithContext<{ userRole: UserRole | null }>()({
-  component: () => (
-    <>
-      <Outlet />
-      <MenuBar />
-    </>
-  ),
+  component: RootLayout,
 });

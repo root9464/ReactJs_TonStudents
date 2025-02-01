@@ -3,16 +3,19 @@ import { ReactComponent as HistoryIco } from '@/assets/svg/historyIcon.svg';
 import { ReactComponent as HomeIco } from '@/assets/svg/homeIcon.svg';
 import { ReactComponent as OrdersIco } from '@/assets/svg/ordersIcon.svg';
 import { ReactComponent as StoreIco } from '@/assets/svg/storeIcon.svg';
+import { UserRoleAtom } from '@/modules/service/store/UserRoleStore';
 
 import { Link, useLocation } from '@tanstack/react-router';
+import { useAtom } from 'jotai';
 import { createElement } from 'react';
 
 export const MenuBar = () => {
   const { pathname } = useLocation();
+  const [role] = useAtom(UserRoleAtom);
 
   return (
     <div className='fixed bottom-5 left-1/2 z-10 flex h-fit w-[calc(100%-16px)] -translate-x-1/2 transform flex-col items-center justify-center gap-2.5 ssm:flex-row ssm:bg-blue-400'>
-      <SubMenu isVisible={true} pathname={pathname} />
+      <SubMenu isVisible={role === 'creator'} pathname={pathname} />
       <Menu pathname={pathname} />
     </div>
   );
