@@ -61,7 +61,7 @@ const Menu = ({ pathname }: { pathname: string }) => {
 const SubMenuPage = [
   { path: '/order', name: 'orders', icon: <OrdersIco className='h-4 w-4' />, type: 'development' },
   { path: '/create', name: 'create', icon: <OrdersIco className='h-4 w-4' /> },
-  { path: '/services', name: 'services', icon: <OrdersIco className='h-4 w-4' />, type: 'development' },
+  { path: '/service', name: 'services', icon: <OrdersIco className='h-4 w-4' /> },
 ];
 
 const SubMenu = ({ isVisible, pathname }: { isVisible: boolean; pathname: string }) => {

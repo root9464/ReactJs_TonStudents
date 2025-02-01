@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react-hooks/rules-of-hooks */
 import '@/index.css';
+import { UserAtom } from '@/modules/service/store/UserStore';
 import { routeTree } from '@/routeTree.gen';
 import { useClientOnce } from '@/shared/hooks/useClientOnce';
 import { useTelegramMock } from '@/shared/hooks/useTelegramMock';
@@ -11,6 +12,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
+import { useAtom } from 'jotai';
 import { createContext, useEffect, useState } from 'react';
 
 declare module '@tanstack/react-router' {
@@ -38,12 +40,18 @@ const initialState: ThemeProviderState = {
 
 export const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
-const router = createRouter({ routeTree });
+const router = createRouter({
+  routeTree,
+  context: {
+    userRole: null,
+  },
+});
 const queryClient = new QueryClient();
 
 export const GlobalProvider = ({ defaultTheme = 'light', storageKey = 'vite-ui-theme', ...props }: ThemeProviderProps) => {
   const isDev = import.meta.env.DEV;
   const [theme, setTheme] = useState<Theme>(() => (localStorage.getItem(storageKey) as Theme) || defaultTheme);
+  const [user] = useAtom(UserAtom);
 
   if (isDev) useTelegramMock();
   useClientOnce(async () => init(true));
@@ -75,7 +83,12 @@ export const GlobalProvider = ({ defaultTheme = 'light', storageKey = 'vite-ui-t
       <ThemeProviderContext.Provider {...props} value={themeContextValue}>
         <HeroUIProvider>
           <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router} />
+            <RouterProvider
+              router={router}
+              context={{
+                userRole: user,
+              }}
+            />
 
             {isDev && (
               <>
