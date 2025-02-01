@@ -98,10 +98,11 @@ const InformationContainer: FC<InformationContainerProps> = ({ id, title, descri
         <button className='h-fit w-fit rounded-xxs bg-muted-secondary p-2'>
           <Change className='h-5 w-5 stroke-secondary-foreground stroke-[1.2]' />
         </button>
+
         <button
-          className='h-fit w-fit rounded-xxs bg-[#E91E65] p-2'
-          onClick={() => mutate({ infoId: id, accessToken: cachedAuthData?.accessToken ?? '' })}>
-          <Clear className='h-5 w-5 stroke-foreground stroke-[1.2]' />
+          onClick={() => mutate({ infoId: id, accessToken: cachedAuthData?.accessToken ?? '' })}
+          className='h-fit w-fit rounded-xxs bg-[#E91E65] p-2 text-white'>
+          <Clear className='h-5 w-5 fill-foreground stroke-[1.2]' />
         </button>
       </div>
     </div>
@@ -188,7 +189,7 @@ const FormInformation = () => {
           </button>
 
           <button className='h-fit w-fit rounded-xxs bg-[#E91E65] p-2' onClick={() => reset()}>
-            <Clear className='h-5 w-5 stroke-foreground stroke-[1.2]' />
+            <Clear className='h-5 w-5 fill-foreground stroke-[1.2]' />
           </button>
         </div>
       </form>

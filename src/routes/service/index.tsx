@@ -1,22 +1,11 @@
-import { createFileRoute, redirect, useMatch } from '@tanstack/react-router';
+import ServicePage from '@/pages/Service';
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/service/')({
-  component: RouteComponent,
+  component: ServicePage,
   beforeLoad: async ({ context }) => {
     if (context.userRole !== 'creator') {
       throw redirect({ to: '/account' });
     }
   },
 });
-
-function RouteComponent() {
-  const {
-    context: { userRole: role },
-  } = useMatch({ from: '/service/' });
-  return (
-    <>
-      <p>fff</p>
-      <p>{role}</p>
-    </>
-  );
-}
