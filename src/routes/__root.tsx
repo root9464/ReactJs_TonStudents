@@ -1,8 +1,8 @@
-import { UserAtomType } from '@/modules/service/store/UserStore';
+import { UserRole } from '@/components/GlobalProvider';
 import { MenuBar } from '@components/Menu';
 import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
 
-export const Route = createRootRouteWithContext<{ userRole: UserAtomType | null }>()({
+export const Route = createRootRouteWithContext<{ userRole: UserRole | null }>()({
   component: () => (
     <>
       <Outlet />

@@ -1,19 +1,21 @@
-import { UserAtom } from '@/modules/service/store/UserStore';
-import { createFileRoute, redirect } from '@tanstack/react-router';
-import { useAtom } from 'jotai';
+import { UserRole } from '@/components/GlobalProvider';
+import { createFileRoute, redirect, useMatch } from '@tanstack/react-router';
+
+const USER_ROLE: (UserRole | null)[] = ['creator', 'moderator', 'administarator'];
 
 export const Route = createFileRoute('/service/')({
   component: RouteComponent,
   beforeLoad: async ({ context }) => {
-    if (context.userRole !== 'creator') {
+    if (!USER_ROLE.includes(context.userRole)) {
       throw redirect({ to: '/account' });
     }
   },
 });
 
 function RouteComponent() {
-  const [role] = useAtom(UserAtom);
-
+  const {
+    context: { userRole: role },
+  } = useMatch({ from: '/service/' });
   return (
     <>
       <p>fff</p>
