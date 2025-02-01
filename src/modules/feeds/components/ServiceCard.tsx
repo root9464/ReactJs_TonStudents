@@ -14,7 +14,14 @@ export const ServiceCard: FC<{ items: ServiceType[] }> = ({ items }) => {
         <div className='flex h-max w-full flex-col gap-2.5 rounded-2xl bg-foreground p-3.5' key={index}>
           <ServiceContent>
             <ServiceHeader>{username}</ServiceHeader>
-            <ServiceTabs tabs={infos} />
+            {infos.length > 1 ? (
+              <ServiceTabs tabs={infos} />
+            ) : (
+              <div className='h-fit rounded-xxs bg-foreground p-3 text-secondary-foreground'>
+                <p>{infos[0].content}</p>
+              </div>
+            )}
+
             <ServiceTags />
           </ServiceContent>
           <div className='grid h-max w-full grid-cols-[auto_1fr_auto] gap-2'>
@@ -25,9 +32,10 @@ export const ServiceCard: FC<{ items: ServiceType[] }> = ({ items }) => {
                 <TonCoin className='h-5 w-5 fill-white' />
               </div>
             </Button>
+
             {pathname !== `/store/${id}` && (
               <Button as={Link} to={`/store/${id}`} className='h-fit w-fit rounded-xxs bg-primary p-2 text-primary-foreground'>
-                Подробнее
+                Связаться
                 <LinkIco className='h-5 w-5 fill-white stroke-[1.2] opacity-70' />
               </Button>
             )}

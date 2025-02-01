@@ -3,7 +3,9 @@ import { useBackButton } from '@/shared/hooks/useBackButton';
 import { Pagination } from '@heroui/react';
 import { useParams } from '@tanstack/react-router';
 import { useState } from 'react';
+import { ChatCard } from './components/ChatCard';
 import { ServiceCard } from './components/ServiceCard';
+import { PaginationSkeletons } from './components/skeletons/PaginationSkeletons';
 import { ServiceCardSkeleton } from './components/skeletons/ServiceCardSkeleton';
 import { useFeeds, useService } from './hooks/useService';
 
@@ -13,8 +15,13 @@ export const FeedsModule = () => {
   const { data, isSuccess, isLoading, isError, error } = useFeeds(currentPage);
 
   return (
-    <ModuleFlow>
-      {isSuccess && <ServiceCard items={data.data} />}
+    <ModuleFlow className='h-max'>
+      {isSuccess && (
+        <>
+          <ServiceCard items={data.data} />
+          <Pagination total={data?.pages ?? 0} page={currentPage} onChange={setCurrentPage} initialPage={currentPage} />
+        </>
+      )}
       {isLoading && (
         <>
           {Array.from({ length: 3 }).map((_, index) => (
@@ -22,9 +29,9 @@ export const FeedsModule = () => {
           ))}
         </>
       )}
-      {isError && <p>{error?.message}</p>}
+      {isLoading && <PaginationSkeletons />}
 
-      <Pagination total={data?.pages ?? 0} page={currentPage} onChange={setCurrentPage} />
+      {isError && <p>{error?.message}</p>}
     </ModuleFlow>
   );
 };
@@ -38,7 +45,12 @@ export const ServiceModule = () => {
 
   return (
     <ModuleFlow>
-      {isSuccess && <ServiceCard items={[data.data]} />}
+      {isSuccess && (
+        <>
+          <ServiceCard items={[data.data]} />
+          <ChatCard />
+        </>
+      )}
       {isLoading && <ServiceCardSkeleton />}
       {isError && <p>{error?.message}</p>}
     </ModuleFlow>
