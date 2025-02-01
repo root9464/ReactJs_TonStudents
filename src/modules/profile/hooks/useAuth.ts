@@ -42,26 +42,6 @@ const UserAuthSchema = z.object({
 
 export type UserAuthType = z.infer<typeof UserAuthSchema>;
 
-export type AuthorizeUserType = {
-  user: {
-    id: number;
-    username: string;
-    visibleName: string;
-    role: string;
-    hash: string;
-    infos?: Array<{
-      userId: number;
-      id: string;
-      title: string;
-      content: string;
-    }>;
-  };
-  token: {
-    accessToken: string;
-    refreshToken: string;
-  };
-};
-
 export const useAuth = (userId: number, userDataRaw: string) => {
   return useQuery({
     queryKey: ['auth', userId, userDataRaw],

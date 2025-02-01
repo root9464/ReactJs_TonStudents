@@ -1,13 +1,13 @@
 import { ModuleFlow } from '@/components/layouts/ModuleFlow';
 import { useBackButton } from '@/shared/hooks/useBackButton';
-import { ProfileCard } from './components/ProfileCard';
+import { PaidSubscription } from './components/PaidSubscription';
 
-export const ProfileModule = () => {
+export const PaymentModule = () => {
   useBackButton(true);
 
   return (
     <ModuleFlow>
-      <ProfileCard />
+      <PaidSubscription />
     </ModuleFlow>
   );
 };

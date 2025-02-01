@@ -7,7 +7,6 @@ export default function ServicesPage() {
     <PageFlow>
       <Header />
       <FeedsModule />
-      {/* пагинация */}
     </PageFlow>
   );
 }

@@ -60,7 +60,7 @@ const Menu = ({ pathname }: { pathname: string }) => {
 
 const SubMenuPage = [
   { path: '/order', name: 'orders', icon: <OrdersIco className='h-4 w-4' />, type: 'development' },
-  { path: '/create', name: 'create', icon: <OrdersIco className='h-4 w-4' />, type: 'development' },
+  { path: '/create', name: 'create', icon: <OrdersIco className='h-4 w-4' /> },
   { path: '/services', name: 'services', icon: <OrdersIco className='h-4 w-4' />, type: 'development' },
 ];
 
@@ -81,11 +81,17 @@ const SubMenu = ({ isVisible, pathname }: { isVisible: boolean; pathname: string
               }`}>
               <Link
                 to={type !== 'development' ? path : ''}
-                className='flex h-full w-full flex-col items-center justify-center px-1.5 py-1 text-xs font-semibold text-secondary'>
+                className={`flex h-full w-full flex-col items-center justify-center px-1.5 py-1 text-xs font-semibold ${pathname === path ? 'text-white' : 'text-secondary-foreground'}`}>
                 {icon &&
                   createElement(icon.type, {
                     className: `${
-                      path === '/history' ? (pathname === path ? 'fill-white' : 'fill-secondary') : pathname === path ? 'stroke-white' : 'stroke-secondary'
+                      path === '/history'
+                        ? pathname === path
+                          ? 'fill-white'
+                          : 'fill-secondary-foreground'
+                        : pathname === path
+                          ? 'stroke-white'
+                          : 'stroke-secondary-foreground'
                     }`,
                   })}
                 {name}

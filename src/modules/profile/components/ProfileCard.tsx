@@ -53,11 +53,11 @@ export const ProfileCard = () => {
 
 const Header: FC<{ userName: string; firstName: string }> = ({ userName, firstName }) => (
   <div className='flex h-fit w-full flex-row items-center justify-between'>
-    <div className='flex flex-col gap-2'>
-      <h2 className='text-lg font-medium'>@{userName}</h2>
+    <div className='flex flex-row gap-2'>
+      <h2 className='text-lg font-medium'>@{userName} |</h2>
       <h2 className='text-lg font-medium'>{firstName}</h2>
     </div>
-    <div className='h-14 w-14 rounded-full bg-lime-300' />
+    <div className='h-12 w-12 rounded-full bg-lime-300' />
   </div>
 );
 

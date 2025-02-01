@@ -11,7 +11,7 @@ export const PaidSubscription = () => {
   const { initData, initDataRaw } = useLaunchParams();
   const cachedAuthData: { accessToken: string; refreshToken: string } | undefined = queryClient.getQueryData(['auth', initDataRaw]);
 
-  const { data: PaymentLink, isSuccess, isError, error, mutate } = usePayment();
+  const { data: PaymentLink, mutate } = usePayment();
 
   const openInvoice = async (paymentUrl: string) => {
     console.log(paymentUrl);

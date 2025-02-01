@@ -10,7 +10,7 @@ export const ServiceCard: FC<{ items: ServiceType[] }> = ({ items }) => {
   const { pathname } = useLocation();
   return (
     <>
-      {items.map(({ id, username, infos }, index) => (
+      {items.map(({ id, username, infos, price }, index) => (
         <div className='flex h-max w-full flex-col gap-2.5 rounded-2xl bg-foreground p-3.5' key={index}>
           <ServiceContent>
             <ServiceHeader>{username}</ServiceHeader>
@@ -28,7 +28,7 @@ export const ServiceCard: FC<{ items: ServiceType[] }> = ({ items }) => {
             <Button className='h-fit w-fit rounded-xxs bg-primary p-2 text-primary-foreground'>
               Заказать
               <div className='flex flex-row opacity-70'>
-                <p>0.5</p>
+                <p>{price}</p>
                 <TonCoin className='h-5 w-5 fill-white' />
               </div>
             </Button>

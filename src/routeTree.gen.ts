@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as TestIndexImport } from './routes/test/index'
 import { Route as StoreIndexImport } from './routes/store/index'
+import { Route as ServiceIndexImport } from './routes/service/index'
 import { Route as AccountIndexImport } from './routes/account/index'
 import { Route as StoreIdImport } from './routes/store/$id'
 
@@ -34,6 +35,12 @@ const TestIndexRoute = TestIndexImport.update({
 const StoreIndexRoute = StoreIndexImport.update({
   id: '/store/',
   path: '/store/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ServiceIndexRoute = ServiceIndexImport.update({
+  id: '/service/',
+  path: '/service/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -74,6 +81,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccountIndexImport
       parentRoute: typeof rootRoute
     }
+    '/service/': {
+      id: '/service/'
+      path: '/service'
+      fullPath: '/service'
+      preLoaderRoute: typeof ServiceIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/store/': {
       id: '/store/'
       path: '/store'
@@ -97,6 +111,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/store/$id': typeof StoreIdRoute
   '/account': typeof AccountIndexRoute
+  '/service': typeof ServiceIndexRoute
   '/store': typeof StoreIndexRoute
   '/test': typeof TestIndexRoute
 }
@@ -105,6 +120,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/store/$id': typeof StoreIdRoute
   '/account': typeof AccountIndexRoute
+  '/service': typeof ServiceIndexRoute
   '/store': typeof StoreIndexRoute
   '/test': typeof TestIndexRoute
 }
@@ -114,16 +130,24 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/store/$id': typeof StoreIdRoute
   '/account/': typeof AccountIndexRoute
+  '/service/': typeof ServiceIndexRoute
   '/store/': typeof StoreIndexRoute
   '/test/': typeof TestIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/store/$id' | '/account' | '/store' | '/test'
+  fullPaths: '/' | '/store/$id' | '/account' | '/service' | '/store' | '/test'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/store/$id' | '/account' | '/store' | '/test'
-  id: '__root__' | '/' | '/store/$id' | '/account/' | '/store/' | '/test/'
+  to: '/' | '/store/$id' | '/account' | '/service' | '/store' | '/test'
+  id:
+    | '__root__'
+    | '/'
+    | '/store/$id'
+    | '/account/'
+    | '/service/'
+    | '/store/'
+    | '/test/'
   fileRoutesById: FileRoutesById
 }
 
@@ -131,6 +155,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   StoreIdRoute: typeof StoreIdRoute
   AccountIndexRoute: typeof AccountIndexRoute
+  ServiceIndexRoute: typeof ServiceIndexRoute
   StoreIndexRoute: typeof StoreIndexRoute
   TestIndexRoute: typeof TestIndexRoute
 }
@@ -139,6 +164,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   StoreIdRoute: StoreIdRoute,
   AccountIndexRoute: AccountIndexRoute,
+  ServiceIndexRoute: ServiceIndexRoute,
   StoreIndexRoute: StoreIndexRoute,
   TestIndexRoute: TestIndexRoute,
 }
@@ -156,6 +182,7 @@ export const routeTree = rootRoute
         "/",
         "/store/$id",
         "/account/",
+        "/service/",
         "/store/",
         "/test/"
       ]
@@ -168,6 +195,9 @@ export const routeTree = rootRoute
     },
     "/account/": {
       "filePath": "account/index.tsx"
+    },
+    "/service/": {
+      "filePath": "service/index.tsx"
     },
     "/store/": {
       "filePath": "store/index.tsx"
