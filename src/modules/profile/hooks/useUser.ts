@@ -1,15 +1,11 @@
 /* eslint-disable @tanstack/query/exhaustive-deps */
 import { axiosInstance } from '@/shared/lib/axios';
+import { SuccessResponse } from '@/shared/types/zodTypes';
 import { validateResult } from '@/shared/utils/utils';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { z } from 'zod';
 
-const AddInfoSchema = z.object({
-  message: z.string(),
-  status: z.string(),
-});
-
-type AddInfoType = z.infer<typeof AddInfoSchema>;
+type AddInfoType = z.infer<typeof SuccessResponse>;
 
 type AddInfoRequest = {
   userId: number;
@@ -39,7 +35,7 @@ export const useAddInfo = () =>
 
       if (status !== 200) throw new Error(statusText);
 
-      validateResult(data, AddInfoSchema);
+      validateResult(data, SuccessResponse);
 
       return data;
     },
@@ -64,7 +60,7 @@ export const useDeleteInfo = () =>
 
       if (status !== 200) throw new Error(statusText);
 
-      validateResult(data, AddInfoSchema);
+      validateResult(data, SuccessResponse);
 
       return data;
     },
