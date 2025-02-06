@@ -23,7 +23,7 @@ const ServiceTagsSchema = z.object({
 const ServiceSchema = z.object({
   id: z.string(),
   userId: z.number(),
-  username: z.string(),
+  nickname: z.string(),
   price: z.number(),
   infos: z.array(ServiceInfosSchema),
   tags: z.array(ServiceTagsSchema).optional(),

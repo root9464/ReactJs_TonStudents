@@ -1,12 +1,30 @@
+import { CreateServiceModule, ServicesModule } from '@/modules/service/Module';
 import { Header } from '@components/Header';
 import { PageFlow } from '@components/layouts/PageFlow';
-import { FeedsModule } from '@modules/feeds/Module';
 
-export default function ServicesPage() {
+export function CreateServicePage() {
   return (
     <PageFlow>
       <Header />
-      <FeedsModule />
+      <CreateServiceModule />
+    </PageFlow>
+  );
+}
+
+export function ServicesPage() {
+  return (
+    <PageFlow>
+      <Header />
+      <ServicesModule />
+    </PageFlow>
+  );
+}
+
+export function OrdersPage() {
+  return (
+    <PageFlow>
+      <Header />
+      <p>orders</p>
     </PageFlow>
   );
 }

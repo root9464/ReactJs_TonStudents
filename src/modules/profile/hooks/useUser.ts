@@ -78,7 +78,6 @@ const UserInfosSchema = z.array(
 const UserDataSchema = z.object({
   data: z.object({
     id: z.number(),
-    username: z.string(),
     visibleName: z.string(),
     role: z.string(),
     hash: z.string(),

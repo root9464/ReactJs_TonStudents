@@ -17,6 +17,8 @@ import { Route as StoreIndexImport } from './routes/store/index'
 import { Route as ServiceIndexImport } from './routes/service/index'
 import { Route as AccountIndexImport } from './routes/account/index'
 import { Route as StoreIdImport } from './routes/store/$id'
+import { Route as ServiceOrdersIndexImport } from './routes/service/orders/index'
+import { Route as ServiceCreateIndexImport } from './routes/service/create/index'
 
 // Create/Update Routes
 
@@ -53,6 +55,18 @@ const AccountIndexRoute = AccountIndexImport.update({
 const StoreIdRoute = StoreIdImport.update({
   id: '/store/$id',
   path: '/store/$id',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ServiceOrdersIndexRoute = ServiceOrdersIndexImport.update({
+  id: '/service/orders/',
+  path: '/service/orders/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ServiceCreateIndexRoute = ServiceCreateIndexImport.update({
+  id: '/service/create/',
+  path: '/service/create/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -102,6 +116,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestIndexImport
       parentRoute: typeof rootRoute
     }
+    '/service/create/': {
+      id: '/service/create/'
+      path: '/service/create'
+      fullPath: '/service/create'
+      preLoaderRoute: typeof ServiceCreateIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/service/orders/': {
+      id: '/service/orders/'
+      path: '/service/orders'
+      fullPath: '/service/orders'
+      preLoaderRoute: typeof ServiceOrdersIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -114,6 +142,8 @@ export interface FileRoutesByFullPath {
   '/service': typeof ServiceIndexRoute
   '/store': typeof StoreIndexRoute
   '/test': typeof TestIndexRoute
+  '/service/create': typeof ServiceCreateIndexRoute
+  '/service/orders': typeof ServiceOrdersIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -123,6 +153,8 @@ export interface FileRoutesByTo {
   '/service': typeof ServiceIndexRoute
   '/store': typeof StoreIndexRoute
   '/test': typeof TestIndexRoute
+  '/service/create': typeof ServiceCreateIndexRoute
+  '/service/orders': typeof ServiceOrdersIndexRoute
 }
 
 export interface FileRoutesById {
@@ -133,13 +165,31 @@ export interface FileRoutesById {
   '/service/': typeof ServiceIndexRoute
   '/store/': typeof StoreIndexRoute
   '/test/': typeof TestIndexRoute
+  '/service/create/': typeof ServiceCreateIndexRoute
+  '/service/orders/': typeof ServiceOrdersIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/store/$id' | '/account' | '/service' | '/store' | '/test'
+  fullPaths:
+    | '/'
+    | '/store/$id'
+    | '/account'
+    | '/service'
+    | '/store'
+    | '/test'
+    | '/service/create'
+    | '/service/orders'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/store/$id' | '/account' | '/service' | '/store' | '/test'
+  to:
+    | '/'
+    | '/store/$id'
+    | '/account'
+    | '/service'
+    | '/store'
+    | '/test'
+    | '/service/create'
+    | '/service/orders'
   id:
     | '__root__'
     | '/'
@@ -148,6 +198,8 @@ export interface FileRouteTypes {
     | '/service/'
     | '/store/'
     | '/test/'
+    | '/service/create/'
+    | '/service/orders/'
   fileRoutesById: FileRoutesById
 }
 
@@ -158,6 +210,8 @@ export interface RootRouteChildren {
   ServiceIndexRoute: typeof ServiceIndexRoute
   StoreIndexRoute: typeof StoreIndexRoute
   TestIndexRoute: typeof TestIndexRoute
+  ServiceCreateIndexRoute: typeof ServiceCreateIndexRoute
+  ServiceOrdersIndexRoute: typeof ServiceOrdersIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -167,6 +221,8 @@ const rootRouteChildren: RootRouteChildren = {
   ServiceIndexRoute: ServiceIndexRoute,
   StoreIndexRoute: StoreIndexRoute,
   TestIndexRoute: TestIndexRoute,
+  ServiceCreateIndexRoute: ServiceCreateIndexRoute,
+  ServiceOrdersIndexRoute: ServiceOrdersIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -184,7 +240,9 @@ export const routeTree = rootRoute
         "/account/",
         "/service/",
         "/store/",
-        "/test/"
+        "/test/",
+        "/service/create/",
+        "/service/orders/"
       ]
     },
     "/": {
@@ -204,6 +262,12 @@ export const routeTree = rootRoute
     },
     "/test/": {
       "filePath": "test/index.tsx"
+    },
+    "/service/create/": {
+      "filePath": "service/create/index.tsx"
+    },
+    "/service/orders/": {
+      "filePath": "service/orders/index.tsx"
     }
   }
 }

@@ -1,6 +1,6 @@
-import ServicePage from '@pages/Service';
+import { FeedPage } from '@/pages/Feeds';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/store/$id')({
-  component: ServicePage,
+  component: FeedPage,
 });

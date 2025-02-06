@@ -36,7 +36,7 @@ export const FeedsModule = () => {
   );
 };
 
-export const ServiceModule = () => {
+export const FeedModule = () => {
   useBackButton(true);
 
   const { id } = useParams({ from: '/store/$id' });
