@@ -4,6 +4,7 @@ import { ReactComponent as Success } from '@/assets/svg/successIcon.svg';
 import { ReactComponent as TonCoin } from '@/assets/svg/tonCoinPath.svg';
 import { ReactComponent as Clear } from '@/assets/svg/xIcon.svg';
 
+import { ErrorFlow } from '@/components/layouts/ErrorFlow';
 import { Form, Input, Textarea } from '@heroui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import { ReactNode } from '@tanstack/react-router';
@@ -90,12 +91,7 @@ export const CreateService = () => {
       {isPending ? (
         <CreateServiceSkeleton additionalFields={additionalFields} />
       ) : isError ? (
-        <div className='flex h-max w-full flex-col gap-2.5 rounded-2xl bg-foreground p-2.5'>
-          <div className='flex h-max w-full auto-rows-max flex-col gap-2.5 rounded-xxs bg-[#E91E65]/20 p-2 text-[#E91E65]'>
-            <p>Ошибка: {error?.message}</p>
-            <p>Попробуйте еще раз</p>
-          </div>
-        </div>
+        <ErrorFlow message={error?.message} className='flex flex-col gap-2.5' />
       ) : (
         <FormProvider {...methods}>
           <div className='flex h-max w-full flex-col gap-2.5 rounded-2xl bg-foreground p-3.5'>
@@ -165,7 +161,7 @@ const ServiceController: FC<AdditionalFieldProps> = ({ updateAdditionalFields, a
   </div>
 );
 
-const CreateServiceHeader: FC = () => {
+const CreateServiceHeader = () => {
   const { control } = useFormContext<CreateServiceForm>();
 
   return (

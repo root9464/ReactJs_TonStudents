@@ -6,8 +6,8 @@ import { ReactComponent as Clear } from '@/assets/svg/xIcon.svg';
 import { ConnectWalletButton } from '../widgets/ConnetWalletButton';
 
 import { ReactComponent as Basket } from '@/assets/svg/basketIcon.svg';
+import { ErrorFlow } from '@/components/layouts/ErrorFlow';
 import { UserRole, UserRoleAtom } from '@/modules/service/store/UserRoleStore';
-import { Alert } from '@heroui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useLaunchParams } from '@telegram-apps/sdk-react';
 import { useAtom } from 'jotai';
@@ -19,7 +19,14 @@ import { ProfileSkeleton } from './skeletons/ProfileSkeleton';
 export const ProfileCard = () => {
   const { initDataRaw, initData } = useLaunchParams();
   const { data: AuthorizeData, isLoading } = useAuth(initDataRaw ?? '');
-  const { data: UserData, isSuccess, isLoading: isLoadingUser, isError, refetch } = useGetUser(initData?.user?.id ?? 0, AuthorizeData?.accessToken ?? '');
+  const {
+    data: UserData,
+    isSuccess,
+    isLoading: isLoadingUser,
+    isError,
+    error,
+    refetch,
+  } = useGetUser(initData?.user?.id ?? 0, AuthorizeData?.accessToken ?? '');
 
   const [, setRole] = useAtom(UserRoleAtom);
   useEffect(() => {
@@ -53,7 +60,7 @@ export const ProfileCard = () => {
       )}
 
       {(isLoading || isLoadingUser) && <ProfileSkeleton />}
-      {isError && <Alert description={'Error'} title='dont know' color='warning' />}
+      {isError && <ErrorFlow message={error?.message} className='flex flex-col gap-2.5' />}
     </>
   );
 };

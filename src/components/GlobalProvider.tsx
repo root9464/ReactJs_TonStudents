@@ -8,10 +8,12 @@ import { useTelegramMock } from '@/shared/hooks/useTelegramMock';
 import { init } from '@/shared/lib/initTma';
 import { HeroUIProvider } from '@heroui/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createRouter, RouterProvider } from '@tanstack/react-router';
+import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useAtom } from 'jotai';
-import { createContext, useEffect, useState } from 'react';
+import { createContext, FC, useEffect, useState } from 'react';
 
 declare module '@tanstack/react-router' {
   interface Register {
@@ -46,7 +48,7 @@ const router = createRouter({
 });
 const queryClient = new QueryClient();
 
-export const GlobalProvider = ({ defaultTheme = 'light', storageKey = 'vite-ui-theme', ...props }: ThemeProviderProps) => {
+export const GlobalProvider: FC<ThemeProviderProps> = ({ defaultTheme = 'light', storageKey = 'vite-ui-theme', ...props }) => {
   const isDev = import.meta.env.DEV;
   const [theme, setTheme] = useState<Theme>(() => (localStorage.getItem(storageKey) as Theme) || defaultTheme);
   const [role] = useAtom(UserRoleAtom);
@@ -90,12 +92,12 @@ export const GlobalProvider = ({ defaultTheme = 'light', storageKey = 'vite-ui-t
               }}
             />
 
-            {/* {isDev && (
+            {isDev && (
               <>
                 <ReactQueryDevtools initialIsOpen={false} />
                 <TanStackRouterDevtools router={router} />
               </>
-            )} */}
+            )}
           </QueryClientProvider>
         </HeroUIProvider>
       </ThemeProviderContext.Provider>

@@ -1,3 +1,4 @@
+import { ErrorFlow } from '@/components/layouts/ErrorFlow';
 import { ModuleFlow } from '@/components/layouts/ModuleFlow';
 import { useBackButton } from '@/shared/hooks/useBackButton';
 import { Pagination } from '@heroui/react';
@@ -31,7 +32,7 @@ export const FeedsModule = () => {
       )}
       {isLoading && <PaginationSkeletons />}
 
-      {isError && <p>{error?.message}</p>}
+      {isError && <ErrorFlow message={error?.message} className='flex flex-col gap-2.5' />}
     </ModuleFlow>
   );
 };
@@ -52,7 +53,7 @@ export const FeedModule = () => {
         </>
       )}
       {isLoading && <ServiceCardSkeleton />}
-      {isError && <p>{error?.message}</p>}
+      {isError && <ErrorFlow message={error?.message} className='flex flex-col gap-2.5' />}
     </ModuleFlow>
   );
 };

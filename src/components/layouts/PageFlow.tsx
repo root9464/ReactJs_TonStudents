@@ -1,5 +1,6 @@
 import { cn } from '@/shared/lib/utils';
 import { ReactNode } from '@tanstack/react-router';
+import { FC } from 'react';
 
 /*
   достижение sticky scroll чтобы он не выходил за пределы контейнера tma safe area
@@ -9,7 +10,7 @@ import { ReactNode } from '@tanstack/react-router';
   </div>
 */
 
-export const PageFlow = ({ children, className, ...props }: { children: ReactNode; className?: string }) => {
+export const PageFlow: FC<{ children: ReactNode; className?: string }> = ({ children, className, ...props }) => {
   return (
     <>
       <div className='safe-area' />
