@@ -18,15 +18,8 @@ import { ProfileSkeleton } from './skeletons/ProfileSkeleton';
 
 export const ProfileCard = () => {
   const { initDataRaw, initData } = useLaunchParams();
-  const { data: AuthorizeData, isLoading } = useAuth(initDataRaw ?? '');
-  const {
-    data: UserData,
-    isSuccess,
-    isLoading: isLoadingUser,
-    isError,
-    error,
-    refetch,
-  } = useGetUser(initData?.user?.id ?? 0, AuthorizeData?.accessToken ?? '');
+  const { data: AuthorizeData, isLoading, isError, error } = useAuth(initDataRaw ?? '');
+  const { data: UserData, isSuccess, isLoading: isLoadingUser, refetch } = useGetUser(initData?.user?.id ?? 0, AuthorizeData?.accessToken ?? '');
 
   const [, setRole] = useAtom(UserRoleAtom);
   useEffect(() => {
@@ -37,7 +30,7 @@ export const ProfileCard = () => {
 
   return (
     <>
-      {AuthorizeData && (
+      {AuthorizeData && isSuccess && (
         <div className='relative grid h-fit w-full auto-rows-max gap-4 rounded-2xl bg-foreground p-3.5'>
           <Header userName={initData?.user?.username ?? ''} firstName={initData?.user?.firstName ?? ''} />
 
@@ -60,7 +53,7 @@ export const ProfileCard = () => {
       )}
 
       {(isLoading || isLoadingUser) && <ProfileSkeleton />}
-      {isError && <ErrorFlow message={error?.message} className='flex flex-col gap-2.5' />}
+      {isError && <ErrorFlow title={error.name} message={error?.message} className='flex flex-col gap-2.5' />}
     </>
   );
 };
