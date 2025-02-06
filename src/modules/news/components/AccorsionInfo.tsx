@@ -7,7 +7,7 @@ export const AccordionInfo = () => {
       className='z-[1] m-0 flex w-full flex-col px-0 py-0'
       itemClasses={{
         title: 'text-secondary text-lg font-medium py-0',
-        base: 'px-4 py-2 rounded-md',
+        base: 'px-4 py-2 rounded-xxs shadow-none border-none',
         trigger: 'p-0',
         content: 'text-secondary-foreground',
       }}>

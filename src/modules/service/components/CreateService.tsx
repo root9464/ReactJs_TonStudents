@@ -90,7 +90,7 @@ export const CreateService = () => {
       {isPending ? (
         <CreateServiceSkeleton additionalFields={additionalFields} />
       ) : isError ? (
-        <div className='flex h-max w-full flex-col gap-2.5 rounded-2xl bg-foreground p-3.5'>
+        <div className='flex h-max w-full flex-col gap-2.5 rounded-2xl bg-foreground p-2.5'>
           <div className='flex h-max w-full auto-rows-max flex-col gap-2.5 rounded-xxs bg-[#E91E65]/20 p-2 text-[#E91E65]'>
             <p>Ошибка: {error?.message}</p>
             <p>Попробуйте еще раз</p>
@@ -109,19 +109,19 @@ export const CreateService = () => {
                   ))}
                 </div>
                 <ServiceController updateAdditionalFields={updateAdditionalFields} additionalFields={additionalFields} />
-                <div className='flex h-fit w-fit flex-row items-center justify-center rounded-xxs bg-primary p-2 text-primary-foreground'>
-                  <input
-                    type='number'
-                    placeholder='Цена'
-                    className='w-[60px] max-w-full bg-transparent opacity-70 outline-none placeholder:text-primary-foreground'
-                    {...methods.register('price', {
-                      required: 'Обязательное поле',
-                      max: 100,
-                    })}
-                  />
-                  <TonCoin className='h-5 w-5 fill-white' />
-                </div>
               </ServiceContent>
+              <div className='flex h-fit w-fit flex-row items-center justify-center rounded-xxs bg-primary p-2 text-primary-foreground'>
+                <input
+                  type='number'
+                  placeholder='Цена'
+                  className='w-[60px] max-w-full bg-transparent opacity-70 outline-none placeholder:text-primary-foreground'
+                  {...methods.register('price', {
+                    required: 'Обязательное поле',
+                    max: 100,
+                  })}
+                />
+                <TonCoin className='h-5 w-5 fill-white' />
+              </div>
             </Form>
           </div>
         </FormProvider>
@@ -131,7 +131,7 @@ export const CreateService = () => {
 };
 
 const ServiceContent: FC<{ children: ReactNode }> = ({ children }) => (
-  <div className='grid h-max w-full auto-rows-max grid-cols-[1fr_auto] grid-rows-[auto_1fr] gap-2.5 rounded-xxs bg-primary-20 p-2 text-primary'>
+  <div className='grid h-max w-full auto-rows-max grid-cols-[1fr_auto] grid-rows-[auto_1fr] gap-2.5 rounded-xxs bg-primary-20 p-2.5 text-primary'>
     {children}
   </div>
 );
@@ -218,7 +218,7 @@ const CreateServiceInformation = () => {
               classNames={{
                 label: 'text-muted group-data-[filled=true]:text-muted font-medium opacity-60',
                 input: 'bg-transparent group-data-[has-value=true]:text-primary placeholder:text-secondary-foreground',
-                inputWrapper: 'shadow-none border-secondary-foreground after:bg-primary',
+                inputWrapper: 'shadow-none border-secondary-foreground after:bg-primary rounded-xxs',
               }}
             />
           )}
@@ -249,7 +249,7 @@ const AdditionalField: FC<{ index: number }> = ({ index }) => {
               classNames={{
                 label: 'text-muted group-data-[filled=true]:text-muted font-medium opacity-60',
                 input: 'bg-transparent group-data-[has-value=true]:text-primary placeholder:text-secondary-foreground font-medium',
-                inputWrapper: 'shadow-none border-secondary-foreground after:bg-primary',
+                inputWrapper: 'shadow-none border-secondary-foreground after:bg-primary rounded-xxs',
               }}
             />
           )}

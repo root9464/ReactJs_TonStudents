@@ -14,23 +14,23 @@ export default {
   theme: {
     extend: {
       borderRadius: {
-        xxs: '12px',
-        xs: '16px',
-        sm: '18px',
-        md: '20px',
-        lg: '22px',
-        xl: '24px',
-        '2xl': '26px',
-        '3xl': '28px',
-        '4xl': '30px',
-        '5xl': '32px',
-        '6xl': '34px',
-        '7xl': '36px',
-        '8xl': '38px',
-        '9xl': '40px',
+        xxs: 'var(--radius)', //12px
+        xs: 'calc(var(--radius) + 2px)', //14px
+        sm: 'calc(var(--radius) + 4px)', //16px
+        md: 'calc(var(--radius) + 6px)', //18px
+        lg: 'calc(var(--radius) + 8px)', //20px
+        xl: 'calc(var(--radius) + 10px)', //22px
+        '2xl': 'calc(var(--radius) + 12px)', //24px
+        '3xl': 'calc(var(--radius) + 14px)', //26px
+        '4xl': 'calc(var(--radius) + 16px)', //28px
+        '5xl': 'calc(var(--radius) + 18px)', //30px
+        '6xl': 'calc(var(--radius) + 20px)', //32px
+        '7xl': 'calc(var(--radius) + 22px)', //34px
+        '8xl': 'calc(var(--radius) + 24px)', //36px
         xxl: '42px',
         xxxl: '44px',
       },
+
       colors: {
         background: 'rgb(var(--background))',
         foreground: 'rgb(var(--foreground))',

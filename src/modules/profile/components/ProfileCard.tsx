@@ -18,8 +18,8 @@ import { ProfileSkeleton } from './skeletons/ProfileSkeleton';
 
 export const ProfileCard = () => {
   const { initDataRaw, initData } = useLaunchParams();
-  const { data: AuthorizeData } = useAuth(initDataRaw ?? '');
-  const { data: UserData, isSuccess, isLoading, isError, refetch } = useGetUser(initData?.user?.id ?? 0, AuthorizeData?.accessToken ?? '');
+  const { data: AuthorizeData, isLoading } = useAuth(initDataRaw ?? '');
+  const { data: UserData, isSuccess, isLoading: isLoadingUser, isError, refetch } = useGetUser(initData?.user?.id ?? 0, AuthorizeData?.accessToken ?? '');
 
   const [, setRole] = useAtom(UserRoleAtom);
   useEffect(() => {
@@ -31,7 +31,7 @@ export const ProfileCard = () => {
   return (
     <>
       {AuthorizeData && (
-        <div className='relative grid h-fit w-full auto-rows-max gap-4 rounded-5xl bg-foreground p-3.5'>
+        <div className='relative grid h-fit w-full auto-rows-max gap-4 rounded-2xl bg-foreground p-3.5'>
           <Header userName={initData?.user?.username ?? ''} firstName={initData?.user?.firstName ?? ''} />
 
           <div className='grid w-full auto-rows-max gap-4'>
@@ -52,7 +52,7 @@ export const ProfileCard = () => {
         </div>
       )}
 
-      {isLoading && <ProfileSkeleton />}
+      {(isLoading || isLoadingUser) && <ProfileSkeleton />}
       {isError && <Alert description={'Error'} title='dont know' color='warning' />}
     </>
   );
@@ -167,7 +167,7 @@ const FormInformation = () => {
       <form onSubmit={handleSubmit(onSubmit)} className='grid grid-cols-[1fr_auto] gap-2'>
         <div className='flex flex-col gap-1'>
           <textarea
-            className={`h-28 w-full rounded-xs p-2.5 text-secondary-foreground outline-none ${
+            className={`h-28 w-full rounded-xxs p-2.5 text-secondary-foreground outline-none ${
               formState.errors.content ? 'border-2 border-[#E91E65] bg-[#E91E65]/10' : 'bg-muted-secondary'
             }`}
             placeholder='Данное поле будет по умолчанию отображаться в профиле'

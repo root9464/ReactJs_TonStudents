@@ -13,15 +13,17 @@ export const TabsInfo: FC<{ items: Props[] }> = ({ items }) => {
       <Tabs
         aria-label='Options'
         classNames={{
-          tabList: 'rounded-md bg-foreground',
-          panel: 'mt-2 p-0 shadow-none border-none',
-          cursor: 'bg-primary rounded-md',
-          tabContent: 'group-data-[selected=true]:text-primary-foreground group-data-[selected=false]:text-secondary-foreground rounded-md ',
+          base: 'h-fit',
+          cursor: 'bg-primary rounded-[10px]',
+          panel: 'mt-3 p-0 shadow-none border-none',
+          tabList: 'bg-foreground rounded-xxs',
+          tab: 'w-full rounded-xxs',
+          tabContent: 'group-data-[selected=true]:text-primary-foreground group-data-[selected=false]:text-secondary-foreground',
         }}>
         {items.map((item) => (
-          <Tab key={item.id} title={item.title} className='w-full rounded-md'>
+          <Tab key={item.id} title={item.title} className='w-full rounded-xxs'>
             <Card className='shadow-none'>
-              <CardBody className='w-full px-4 py-2 text-secondary-foreground'>
+              <CardBody className='w-full px-3.5 py-2 text-secondary-foreground'>
                 <p>{item.description}</p>
               </CardBody>
             </Card>

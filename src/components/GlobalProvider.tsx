@@ -8,9 +8,7 @@ import { useTelegramMock } from '@/shared/hooks/useTelegramMock';
 import { init } from '@/shared/lib/initTma';
 import { HeroUIProvider } from '@heroui/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createRouter, RouterProvider } from '@tanstack/react-router';
-import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useAtom } from 'jotai';
 import { createContext, useEffect, useState } from 'react';
@@ -78,6 +76,8 @@ export const GlobalProvider = ({ defaultTheme = 'light', storageKey = 'vite-ui-t
     },
   };
 
+  console.log(theme);
+
   return (
     <TonConnectUIProvider manifestUrl={'https://taiga-labs.github.io/gorelko.json'}>
       <ThemeProviderContext.Provider {...props} value={themeContextValue}>
@@ -90,12 +90,12 @@ export const GlobalProvider = ({ defaultTheme = 'light', storageKey = 'vite-ui-t
               }}
             />
 
-            {isDev && (
+            {/* {isDev && (
               <>
                 <ReactQueryDevtools initialIsOpen={false} />
                 <TanStackRouterDevtools router={router} />
               </>
-            )}
+            )} */}
           </QueryClientProvider>
         </HeroUIProvider>
       </ThemeProviderContext.Provider>

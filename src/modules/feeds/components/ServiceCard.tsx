@@ -10,10 +10,10 @@ export const ServiceCard: FC<{ items: ServiceType[] }> = ({ items }) => {
   const { pathname } = useLocation();
   return (
     <>
-      {items.map(({ id, username, infos, price }, index) => (
+      {items.map(({ id, nickname, infos, price }, index) => (
         <div className='flex h-max w-full flex-col gap-2.5 rounded-2xl bg-foreground p-3.5' key={index}>
           <ServiceContent>
-            <ServiceHeader>{username}</ServiceHeader>
+            <ServiceHeader>{nickname}</ServiceHeader>
             {infos.length > 1 ? (
               <ServiceTabs tabs={infos} />
             ) : (
@@ -34,7 +34,7 @@ export const ServiceCard: FC<{ items: ServiceType[] }> = ({ items }) => {
             </Button>
 
             {pathname !== `/store/${id}` && (
-              <Button as={Link} to={`/store/${id}`} className='h-fit w-fit rounded-xxs bg-primary p-2 text-primary-foreground'>
+              <Button as={Link} to={`/store/${id}`} className='rounded-sx h-fit w-fit bg-primary p-2 text-primary-foreground'>
                 Связаться
                 <LinkIco className='h-5 w-5 fill-white stroke-[1.2] opacity-70' />
               </Button>
@@ -53,7 +53,7 @@ const ServiceHeader: FC<{ children: ReactNode }> = ({ children }) => (
 );
 
 const ServiceContent: FC<{ children: ReactNode }> = ({ children }) => (
-  <div className='grid h-max w-full auto-rows-max grid-rows-[auto_1fr] gap-2.5 rounded-xxs bg-primary-20 p-2 text-primary'>{children}</div>
+  <div className='grid h-max w-full auto-rows-max grid-rows-[auto_1fr] gap-2.5 rounded-xxs bg-primary-20 p-2.5 text-primary'>{children}</div>
 );
 
 type TabProps = {
@@ -75,7 +75,7 @@ const ServiceTabs = ({ tabs }: { tabs: TabProps[] }) => (
     {tabs.map((tab) => (
       <Tab key={tab.title} title={tab.title}>
         <Card className='shadow-none'>
-          <CardBody className='bg-foreground text-secondary-foreground'>{tab.content}</CardBody>
+          <CardBody className='rounded-xxs bg-foreground text-secondary-foreground'>{tab.content}</CardBody>
         </Card>
       </Tab>
     ))}

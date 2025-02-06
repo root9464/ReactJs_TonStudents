@@ -4,6 +4,6 @@ import { GlobalProvider } from './components/GlobalProvider';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <GlobalProvider />
+    <GlobalProvider defaultTheme='light' storageKey='vite-ui-theme' />
   </StrictMode>,
 );
